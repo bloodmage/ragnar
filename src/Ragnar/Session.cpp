@@ -151,6 +151,12 @@ namespace Ragnar
         this->_session->listen_on(std::make_pair(lower, upper));
     }
 
+	void Session::ListenOn(int lower, int upper, System::Net::IPAddress^ ip)
+	{
+		const char* interfa = Utils::GetStdStringFromManagedString(ip->ToString()).c_str();
+		this->_session->listen_on(std::make_pair(lower, upper), interfa);
+	}
+
     bool Session::IsListening::get()
     {
         return this->_session->is_listening();

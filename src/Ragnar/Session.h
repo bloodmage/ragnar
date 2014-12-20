@@ -98,8 +98,10 @@ namespace Ragnar
 
         virtual void SetKey(int key);
 
-        virtual void ListenOn(int lower, int upper); // TODO: implement interface selector
+        virtual void ListenOn(int lower, int upper);
         
+		virtual void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+
         virtual property bool IsListening { bool get(); }
 
         virtual property int ListenPort { int get(); }

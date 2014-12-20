@@ -42,6 +42,8 @@ namespace Ragnar
 
         void ListenOn(int lower, int upper);
 
+		void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+
         property bool IsListening { bool get(); }
 
         property int ListenPort { int get(); }
