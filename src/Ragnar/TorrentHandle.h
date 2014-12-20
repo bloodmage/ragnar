@@ -73,9 +73,11 @@ namespace Ragnar
 
         System::Collections::Generic::IEnumerable<AnnounceEntry^>^ GetTrackers();
 
-        // url_seeds()
-        // add_url_seed()
-        // remove_url_seed()
+		property cli::array<System::String^, 1>^ UrlSeeds { cli::array<System::String^, 1>^ get(); }
+
+		void AddUrlSeed(System::String^ url);
+
+		void RemoveUrlSeed(System::String^ url);
 
         // http_seeds()
         // remove_http_seed()
