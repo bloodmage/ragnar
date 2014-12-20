@@ -88,5 +88,6 @@ namespace Ragnar
         // TODO:    boost::shared_array<char> metadata () const;
 
         property bool IsMerkleTorrent { bool get(); }
+
     };
 }

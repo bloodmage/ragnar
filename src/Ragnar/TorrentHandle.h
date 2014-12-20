@@ -49,6 +49,8 @@ namespace Ragnar
 
         TorrentStatus^ GetStatus();
 
+		TorrentStatus^ QueryStatus();
+
         System::Collections::Generic::IEnumerable<PartialPieceInfo^>^ GetDownloadQueue();
 
         void ResetPieceDeadline(int pieceIndex);
@@ -60,6 +62,8 @@ namespace Ragnar
         void SetPriority(int priority);
 
         cli::array<long long>^ GetFileProgresses();
+
+		cli::array<long long>^ GetFileProgressesFast(cli::array<long long>^ result);
 
         void ClearError();
 
@@ -174,5 +178,7 @@ namespace Ragnar
         property bool IsSeed { bool get(); }
 
         property bool HasMetadata { bool get(); }
+
+		property bool IsValid { bool get(); }
     };
 }

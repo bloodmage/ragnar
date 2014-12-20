@@ -57,8 +57,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED</PreprocessorDefinitions>
+      <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
@@ -69,9 +69,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED</PreprocessorDefinitions>
+      <Optimization>Full</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -102,6 +104,8 @@
     <ClInclude Include="PeerConnectAlert.h" />
     <ClInclude Include="PeerInfo.h" />
     <ClInclude Include="PeerUnsnubbedAlert.h" />
+    <ClInclude Include="PerformanceAlert.h" />
+    <ClInclude Include="PerformanceWarningType.h" />
     <ClInclude Include="PieceFinishedAlert.h" />
     <ClInclude Include="SaveResumeDataAlert.h" />
     <ClInclude Include="ScrapeReplyAlert.h" />
@@ -152,6 +156,7 @@
     <ClCompile Include="PeerConnectAlert.cpp" />
     <ClCompile Include="PeerInfo.cpp" />
     <ClCompile Include="PeerUnsnubbedAlert.cpp" />
+    <ClCompile Include="PerformanceAlert.cpp" />
     <ClCompile Include="PieceFinishedAlert.cpp" />
     <ClCompile Include="SaveResumeDataAlert.cpp" />
     <ClCompile Include="ScrapeReplyAlert.cpp" />

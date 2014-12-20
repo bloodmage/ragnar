@@ -71,6 +71,12 @@ namespace Ragnar
         return gcnew TorrentStatus(this->_handle->status());
     }
 
+	TorrentStatus^ TorrentHandle::QueryStatus()
+	{
+		return gcnew TorrentStatus(this->_handle->status());
+	}
+
+
     System::Collections::Generic::IEnumerable<PartialPieceInfo^>^ TorrentHandle::GetDownloadQueue()
     {
         std::vector<libtorrent::partial_piece_info> queue;
@@ -120,6 +126,19 @@ namespace Ragnar
 
         return result;
     }
+
+	cli::array<long long>^ TorrentHandle::GetFileProgressesFast(cli::array<long long>^ result)
+	{
+		std::vector<libtorrent::size_type> fp;
+		this->_handle->file_progress(fp, libtorrent::torrent_handle::piece_granularity);
+
+		for (int i = 0; i < fp.size(); i++)
+		{
+			result[i] = fp[i];
+		}
+
+		return result;
+	}
 
     void TorrentHandle::ClearError()
     {
@@ -395,4 +414,9 @@ namespace Ragnar
     {
         return this->_handle->has_metadata();
     }
+	
+	bool TorrentHandle::IsValid::get()
+	{
+		return this->_handle->is_valid();
+	}
 }
