@@ -198,6 +198,41 @@ namespace Ragnar
 		this->_handle->remove_url_seed(ur);
 	}
 
+	cli::array<System::String^, 1>^ TorrentHandle::HttpSeeds::get()
+	{
+		std::set<std::string> urls = this->_handle->http_seeds();
+
+		if (urls.empty())
+		{
+			return gcnew cli::array<System::String^, 1>(0);
+		}
+
+		cli::array<System::String^, 1>^ data = gcnew cli::array<System::String^, 1>(urls.size());
+
+		std::set<std::string>::iterator it;
+		int index = 0;
+		for (it = urls.begin(); it != urls.end(); ++it)
+		{
+			std::string url = *it;
+			data[index] = Utils::GetManagedStringFromStandardString(url);
+			index++;
+		}
+
+		return data;
+	}
+
+	void TorrentHandle::AddHttpSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->add_http_seed(ur);
+	}
+
+	void TorrentHandle::RemoveHttpSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->remove_http_seed(ur);
+	}
+
     void TorrentHandle::Pause()
     {
         this->_handle->pause();

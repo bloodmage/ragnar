@@ -79,9 +79,11 @@ namespace Ragnar
 
 		void RemoveUrlSeed(System::String^ url);
 
-        // http_seeds()
-        // remove_http_seed()
-        // add_http_seed()
+		property cli::array<System::String^, 1>^ HttpSeeds { cli::array<System::String^, 1>^ get(); }
+
+		void AddHttpSeed(System::String^ url);
+
+		void RemoveHttpSeed(System::String^ url);
 
         // add_extension()
 
