@@ -162,6 +162,7 @@ namespace Ragnar
         property bool SequentialDownload { bool get(); void set(bool value); }
 
         // TODO: void connect_peer (tcp::endpoint const& adr, int source = 0) const;
+		void ConnectPeer(System::Net::IPEndPoint^ point, int source);
 
         property int MaxUploads { int get(); void set(int value); }
 

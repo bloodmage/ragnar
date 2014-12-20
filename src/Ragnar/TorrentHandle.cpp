@@ -489,4 +489,11 @@ namespace Ragnar
 	{
 		return this->_handle->is_valid();
 	}
+
+	void TorrentHandle::ConnectPeer(System::Net::IPEndPoint^ point, int source)
+	{
+		boost::asio::ip::address_v4 add(point->Address->Address);
+		boost::asio::ip::tcp::endpoint po(add, point->Port);
+		this->_handle->connect_peer(po, source);
+	}
 }
