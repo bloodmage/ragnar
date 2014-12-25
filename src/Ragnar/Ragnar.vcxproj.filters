@@ -182,6 +182,9 @@
     <ClInclude Include="ListenFailedAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ExternalIPAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -323,6 +326,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ListenFailedAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalIPAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

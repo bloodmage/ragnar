@@ -91,6 +91,7 @@
     <ClInclude Include="AlertFactory.h" />
     <ClInclude Include="AnnounceEntry.h" />
     <ClInclude Include="Collections\Vector.h" />
+    <ClInclude Include="ExternalIPAlert.h" />
     <ClInclude Include="FileCompletedAlert.h" />
     <ClInclude Include="FileEntry.h" />
     <ClInclude Include="FileRenamedAlert.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="AlertFactory.cpp" />
     <ClCompile Include="AnnounceEntry.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
+    <ClCompile Include="ExternalIPAlert.cpp" />
     <ClCompile Include="FileCompletedAlert.cpp" />
     <ClCompile Include="FileEntry.cpp" />
     <ClCompile Include="FileRenamedAlert.cpp" />
