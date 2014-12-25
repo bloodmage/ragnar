@@ -25,6 +25,7 @@
 #include "PerformanceAlert.h"
 #include "ListenFailedAlert.h"
 #include "ExternalIPAlert.h"
+#include "ListenSucceededAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -157,6 +158,9 @@ namespace Ragnar
 
 		case libtorrent::external_ip_alert::alert_type:
 			return gcnew ExternalIPAlert(static_cast<libtorrent::external_ip_alert*>(alert.get()));
+
+		case libtorrent::listen_succeeded_alert::alert_type:
+			return gcnew ListenSucceededAlert(static_cast<libtorrent::listen_succeeded_alert*>(alert.get()));
 		}
 
 
