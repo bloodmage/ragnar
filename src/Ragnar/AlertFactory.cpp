@@ -23,6 +23,7 @@
 #include "TorrentCheckedAlert.h"
 #include "UnwantedBlockAlert.h"
 #include "PerformanceAlert.h"
+#include "ListenFailedAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -149,6 +150,9 @@ namespace Ragnar
         
 		case libtorrent::performance_alert::alert_type:
 			return gcnew PerformanceAlert(static_cast<libtorrent::performance_alert*>(alert.get()));
+
+		case libtorrent::listen_failed_alert::alert_type:
+			return gcnew ListenFailedAlert(static_cast<libtorrent::listen_failed_alert*>(alert.get()));
 		}
 
 

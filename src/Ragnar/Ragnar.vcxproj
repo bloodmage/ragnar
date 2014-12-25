@@ -97,6 +97,7 @@
     <ClInclude Include="Fingerprint.h" />
     <ClInclude Include="IAlertFactory.h" />
     <ClInclude Include="ISession.h" />
+    <ClInclude Include="ListenFailedAlert.h" />
     <ClInclude Include="MetadataReceivedAlert.h" />
     <ClInclude Include="PartialPieceInfo.h" />
     <ClInclude Include="PeerAlert.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="FileEntry.cpp" />
     <ClCompile Include="FileRenamedAlert.cpp" />
     <ClCompile Include="Fingerprint.cpp" />
+    <ClCompile Include="ListenFailedAlert.cpp" />
     <ClCompile Include="MetadataReceivedAlert.cpp" />
     <ClCompile Include="PartialPieceInfo.cpp" />
     <ClCompile Include="PeerAlert.cpp" />
