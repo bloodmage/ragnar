@@ -90,6 +90,7 @@
     <ClInclude Include="Alert.h" />
     <ClInclude Include="AlertFactory.h" />
     <ClInclude Include="AnnounceEntry.h" />
+    <ClInclude Include="BitField.h" />
     <ClInclude Include="Collections\Vector.h" />
     <ClInclude Include="ExternalIPAlert.h" />
     <ClInclude Include="FileCompletedAlert.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Alert.cpp" />
     <ClCompile Include="AlertFactory.cpp" />
     <ClCompile Include="AnnounceEntry.cpp" />
+    <ClCompile Include="BitField.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
     <ClCompile Include="ExternalIPAlert.cpp" />
     <ClCompile Include="FileCompletedAlert.cpp" />

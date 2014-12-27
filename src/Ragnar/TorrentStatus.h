@@ -8,6 +8,7 @@ namespace libtorrent
 namespace Ragnar
 {
     ref class SHA1Hash;
+	ref class BitField;
     enum class TorrentState;
 
     public ref class TorrentStatus
@@ -67,8 +68,8 @@ namespace Ragnar
             long long get();
         }
 
-        //bitfield pieces;
-        //bitfield verified_pieces;
+		property BitField^ Pieces { BitField^ get(); }
+		property BitField^ VerifiedPieces { BitField^ get(); }
 
         property long long TotalDone
         {

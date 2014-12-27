@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SHA1Hash.h"
+#include "BitField.h"
 #include "TorrentState.h"
 #include "TorrentStatus.h"
 #include "Utils.h"
@@ -362,4 +363,30 @@ namespace Ragnar
     {
         return gcnew SHA1Hash(this->_status->info_hash);
     }
+
+	BitField^ TorrentStatus::Pieces::get()
+	{
+		switch (this->_status->state)
+		{
+		case libtorrent::torrent_status::state_t::downloading:
+		case libtorrent::torrent_status::state_t::seeding:
+		{
+			libtorrent::bitfield a = this->_status->pieces; 
+			return gcnew BitField(&a);
+		}
+			break;
+		default:
+			return nullptr;
+		}
+	}
+
+	BitField^ TorrentStatus::VerifiedPieces::get()
+	{
+		if (this->_status->seed_mode)
+		{
+			libtorrent::bitfield a = this->_status->verified_pieces;
+			return gcnew BitField(&a);
+		}
+		return nullptr;
+	}
 }
