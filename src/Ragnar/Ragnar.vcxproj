@@ -141,6 +141,7 @@
     <ClInclude Include="TorrentStatus.h" />
     <ClInclude Include="Interop\TorrentStatusValueConverter.h" />
     <ClInclude Include="TrackerAlert.h" />
+    <ClInclude Include="TrackerWarningAlert.h" />
     <ClInclude Include="UnwantedBlockAlert.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Interop\ValueConverter.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="TorrentStatus.cpp" />
     <ClCompile Include="Interop\TorrentStatusValueConverter.cpp" />
     <ClCompile Include="TrackerAlert.cpp" />
+    <ClCompile Include="TrackerWarningAlert.cpp" />
     <ClCompile Include="UnwantedBlockAlert.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>

@@ -28,6 +28,7 @@
 #include "ListenSucceededAlert.h"
 #include "PeerBlockedAlert.h"
 #include "PeerDisconnectedAlert.h"
+#include "TrackerWarningAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -169,6 +170,9 @@ namespace Ragnar
 
 		case libtorrent::peer_disconnected_alert::alert_type:
 			return gcnew PeerDisconnectedAlert(static_cast<libtorrent::peer_disconnected_alert*>(alert.get()));
+
+		case libtorrent::tracker_warning_alert::alert_type:
+			return gcnew TrackerWarningAlert(static_cast<libtorrent::tracker_warning_alert*>(alert.get()));
 		}
 
 
