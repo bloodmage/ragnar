@@ -194,6 +194,9 @@
     <ClInclude Include="PeerBlockedAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PeerDisconnectedAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -347,6 +350,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PeerBlockedAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PeerDisconnectedAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

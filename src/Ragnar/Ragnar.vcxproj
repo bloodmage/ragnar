@@ -107,6 +107,7 @@
     <ClInclude Include="PeerBanAlert.h" />
     <ClInclude Include="PeerBlockedAlert.h" />
     <ClInclude Include="PeerConnectAlert.h" />
+    <ClInclude Include="PeerDisconnectedAlert.h" />
     <ClInclude Include="PeerInfo.h" />
     <ClInclude Include="PeerUnsnubbedAlert.h" />
     <ClInclude Include="PerformanceAlert.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="PeerBanAlert.cpp" />
     <ClCompile Include="PeerBlockedAlert.cpp" />
     <ClCompile Include="PeerConnectAlert.cpp" />
+    <ClCompile Include="PeerDisconnectedAlert.cpp" />
     <ClCompile Include="PeerInfo.cpp" />
     <ClCompile Include="PeerUnsnubbedAlert.cpp" />
     <ClCompile Include="PerformanceAlert.cpp" />
