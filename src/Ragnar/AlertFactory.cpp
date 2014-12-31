@@ -31,6 +31,7 @@
 #include "TrackerWarningAlert.h"
 #include "TrackerErrorAlert.h"
 #include "TrackerReplyAlert.h"
+#include "TrackerAnnounceAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -181,6 +182,9 @@ namespace Ragnar
 
 		case libtorrent::tracker_reply_alert::alert_type:
 			return gcnew TrackerReplyAlert(static_cast<libtorrent::tracker_reply_alert*>(alert.get()));
+
+		case libtorrent::tracker_announce_alert::alert_type:
+			return gcnew TrackerAnnounceAlert(static_cast<libtorrent::tracker_announce_alert*>(alert.get()));
 		}
 
 
