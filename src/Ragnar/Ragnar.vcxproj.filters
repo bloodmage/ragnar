@@ -203,6 +203,9 @@
     <ClInclude Include="TrackerErrorAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TrackerReplyAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -365,6 +368,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrackerErrorAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackerReplyAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
