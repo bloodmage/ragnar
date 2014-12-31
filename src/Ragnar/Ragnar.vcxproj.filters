@@ -212,6 +212,9 @@
     <ClInclude Include="TrackerAnnounceEventType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScrapeFailedAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -380,6 +383,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrackerAnnounceAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrapeFailedAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
