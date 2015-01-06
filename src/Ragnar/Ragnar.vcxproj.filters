@@ -215,6 +215,15 @@
     <ClInclude Include="ScrapeFailedAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UtpStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DhtRoutingBucket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DhtLookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -386,6 +395,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScrapeFailedAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtpStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtRoutingBucket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtLookup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

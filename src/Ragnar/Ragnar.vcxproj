@@ -92,6 +92,8 @@
     <ClInclude Include="AnnounceEntry.h" />
     <ClInclude Include="BitField.h" />
     <ClInclude Include="Collections\Vector.h" />
+    <ClInclude Include="DhtLookup.h" />
+    <ClInclude Include="DhtRoutingBucket.h" />
     <ClInclude Include="ExternalIPAlert.h" />
     <ClInclude Include="FileCompletedAlert.h" />
     <ClInclude Include="FileEntry.h" />
@@ -150,6 +152,7 @@
     <ClInclude Include="UnwantedBlockAlert.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Interop\ValueConverter.h" />
+    <ClInclude Include="UtpStatus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddTorrentParams.cpp" />
@@ -158,6 +161,8 @@
     <ClCompile Include="AnnounceEntry.cpp" />
     <ClCompile Include="BitField.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
+    <ClCompile Include="DhtLookup.cpp" />
+    <ClCompile Include="DhtRoutingBucket.cpp" />
     <ClCompile Include="ExternalIPAlert.cpp" />
     <ClCompile Include="FileCompletedAlert.cpp" />
     <ClCompile Include="FileEntry.cpp" />
@@ -212,6 +217,7 @@
     <ClCompile Include="TrackerWarningAlert.cpp" />
     <ClCompile Include="UnwantedBlockAlert.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="UtpStatus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
