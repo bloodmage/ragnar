@@ -7,6 +7,7 @@
 #include "SessionSettings.h"
 #include "SessionStatus.h"
 #include "TorrentHandle.h"
+#include "PeSettings.h"
 #include "Utils.h"
 
 #include <libtorrent\bencode.hpp>
@@ -191,6 +192,16 @@ namespace Ragnar
     {
         this->_session->set_settings(*settings->get_ptr());
     }
+
+	PeSettings^ Session::QueryPeerEncryptionSettings()
+	{
+		return gcnew PeSettings(this->_session->get_pe_settings());
+	}
+
+	void Session::SetPeSettings(PeSettings^ pe_settings)
+	{
+		this->_session->set_pe_settings(*pe_settings->get_ptr());
+	}
 
     IAlertFactory^ Session::Alerts::get()
     {

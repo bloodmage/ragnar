@@ -224,6 +224,15 @@
     <ClInclude Include="DhtLookup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PeSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PeSettings_EncPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PeSettings_EncLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -404,6 +413,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DhtLookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PeSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

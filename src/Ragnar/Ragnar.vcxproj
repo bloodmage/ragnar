@@ -114,6 +114,9 @@
     <ClInclude Include="PeerUnsnubbedAlert.h" />
     <ClInclude Include="PerformanceAlert.h" />
     <ClInclude Include="PerformanceWarningType.h" />
+    <ClInclude Include="PeSettings.h" />
+    <ClInclude Include="PeSettings_EncLevel.h" />
+    <ClInclude Include="PeSettings_EncPolicy.h" />
     <ClInclude Include="PieceFinishedAlert.h" />
     <ClInclude Include="SaveResumeDataAlert.h" />
     <ClInclude Include="ScrapeFailedAlert.h" />
@@ -180,6 +183,7 @@
     <ClCompile Include="PeerInfo.cpp" />
     <ClCompile Include="PeerUnsnubbedAlert.cpp" />
     <ClCompile Include="PerformanceAlert.cpp" />
+    <ClCompile Include="PeSettings.cpp" />
     <ClCompile Include="PieceFinishedAlert.cpp" />
     <ClCompile Include="SaveResumeDataAlert.cpp" />
     <ClCompile Include="ScrapeFailedAlert.cpp" />
