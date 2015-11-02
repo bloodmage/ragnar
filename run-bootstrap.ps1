@@ -80,10 +80,10 @@ if (!(Test-Path $LIBTORRENT_ROOT)) {
 }
 
 # Bootstrap Boost
- Write-Host "Bootstrapping Boost"
- $boost_bootstrap = Join-Path $BOOST_ROOT "bootstrap.bat"
-#Start-Process "$boost_bootstrap" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
- Start-Process "$boost_bootstrap" -Wait -WorkingDirectory $BOOST_ROOT
+Write-Host "Bootstrapping Boost"
+$boost_bootstrap = Join-Path $BOOST_ROOT "bootstrap.bat"
+Start-Process "$boost_bootstrap" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
+
 
 # Build Boost
 Write-Host "Building Boost. This *WILL* take a while."

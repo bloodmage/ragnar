@@ -124,27 +124,28 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="boost_chrono-vc120-mt-gd-1_59.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="boost_date_time-vc120-mt-gd-1_59.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="boost_system-vc120-mt-gd-1_59.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="boost_thread-vc120-mt-gd-1_59.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="torrent.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Ragnar\Ragnar.vcxproj">
       <Project>{e017ab3d-b752-412d-8109-7a233331d7e2}</Project>
       <Name>Ragnar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_chrono-vc120-mt-gd-1_59.dll">
+      <Link>boost_chrono-vc120-mt-gd-1_59.dll</Link>
+    </Content>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_date_time-vc120-mt-gd-1_59.dll">
+      <Link>boost_date_time-vc120-mt-gd-1_59.dll</Link>
+    </Content>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_system-vc120-mt-gd-1_59.dll">
+      <Link>boost_system-vc120-mt-gd-1_59.dll</Link>
+    </Content>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_thread-vc120-mt-gd-1_59.dll">
+      <Link>boost_thread-vc120-mt-gd-1_59.dll</Link>
+    </Content>
+    <Content Include="..\..\packages\libtorrent-rasterbar-1.0.6\bin\msvc-12.0\debug\address-model-64\boost-link-shared\boost-source\threading-multi\torrent.dll">
+      <Link>torrent.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
