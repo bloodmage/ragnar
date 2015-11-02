@@ -5,7 +5,7 @@ Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (
 ## How to build from source
 The repository includes a `bootstrap.bat` file which runs the `run-bootstrap.ps1` script. This will download and compile both Boost and libtorrent automatically.
 
-### 1. Run the `bootstrap.bat` file
+### 1. Run the `bootstrap.bat` file. If it hangs after "Bootstrapping Boost" - then simply run it again.
 
 ### 2. Building Ragnar
 Open `Ragnar.sln` in Visual Studio 2013. Press `F6`. Wait a while. Success. If not - report an issue.
