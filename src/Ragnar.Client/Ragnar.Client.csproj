@@ -15,7 +15,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,9 +49,6 @@
     </Reference>
     <Reference Include="Ninject.Extensions.Factory">
       <HintPath>..\..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
-    </Reference>
-    <Reference Include="Ragnar" Condition="'$(Configuration)' == 'Debug'">
-      <HintPath>..\..\Debug\Ragnar.dll</HintPath>
     </Reference>
     <Reference Include="Ragnar" Condition="'$(Configuration)' == 'Release'">
       <HintPath>..\..\Release\Ragnar.dll</HintPath>
@@ -126,26 +124,27 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\packages\boost_1_55_0\stage\lib\boost_chrono-vc120-mt-gd-1_55.dll">
-      <Link>boost_chrono-vc120-mt-gd-1_55.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="boost_chrono-vc120-mt-gd-1_55.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_55_0\stage\lib\boost_date_time-vc120-mt-gd-1_55.dll">
-      <Link>boost_date_time-vc120-mt-gd-1_55.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="boost_date_time-vc120-mt-gd-1_55.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_55_0\stage\lib\boost_system-vc120-mt-gd-1_55.dll">
-      <Link>boost_system-vc120-mt-gd-1_55.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="boost_system-vc120-mt-gd-1_55.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_55_0\stage\lib\boost_thread-vc120-mt-gd-1_55.dll">
-      <Link>boost_thread-vc120-mt-gd-1_55.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="boost_thread-vc120-mt-gd-1_55.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\libtorrent-rasterbar-1.0.2\bin\msvc-12.0\debug\boost-link-shared\boost-source\threading-multi\torrent.dll">
-      <Link>torrent.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="torrent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ragnar\Ragnar.vcxproj">
+      <Project>{e017ab3d-b752-412d-8109-7a233331d7e2}</Project>
+      <Name>Ragnar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

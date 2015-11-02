@@ -1,4 +1,4 @@
-# Ragnar
+# Ragnar (64bit - libtorrent 1.0.6) 
 Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (mostly) complete interface to the underlying C++ library.
 
 ## Usage
