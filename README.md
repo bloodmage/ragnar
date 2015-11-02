@@ -1,52 +1,6 @@
 # Ragnar (64bit - libtorrent 1.0.6) 
 Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (mostly) complete interface to the underlying C++ library.
 
-## Usage
-
-### 1. Install the NuGet package.
-
-```posh
-PM> Install-Package Ragnar
-```
-
-### 2. Create a session
-
-```csharp
-using(var session = new Session())
-{
-    // Make the session listen on a port in the range
-    // 6881-6889
-    session.ListenOn(6881, 6889);
-
-    // Create the AddTorrentParams with info about the torrent
-    // we'd like to add.
-    var addParams = new AddTorrentParams
-    {
-        SavePath = "C:\\Downloads",
-        Url = "<url to a torrent file>"
-    };
-
-    // Add a torrent to the session and get a `TorrentHandle`
-    // in return.
-    var handle = session.AddTorrent(addParams);
-
-    while(true)
-    {
-        // Get a `TorrentStatus` instance from the handle.
-        var status = handle.QueryStatus();
-
-        // If we are seeding, our job here is done.
-        if(status.IsSeeding)
-        {
-            break;
-        }
-
-        // Print our progress and sleep for a bit.
-        Console.WriteLine("{0}% downloaded", status.Progress * 100);
-        Thread.Sleep(1000);
-    }
-}
-```
 
 ## How to build from source
 The repository includes a `bootstrap.bat` file which runs the `run-bootstrap.ps1` script. This will download and compile both Boost and libtorrent automatically.
