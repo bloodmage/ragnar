@@ -124,16 +124,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="boost_chrono-vc120-mt-gd-1_55.dll">
+    <Content Include="boost_chrono-vc120-mt-gd-1_59.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="boost_date_time-vc120-mt-gd-1_55.dll">
+    <Content Include="boost_date_time-vc120-mt-gd-1_59.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="boost_system-vc120-mt-gd-1_55.dll">
+    <Content Include="boost_system-vc120-mt-gd-1_59.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="boost_thread-vc120-mt-gd-1_55.dll">
+    <Content Include="boost_thread-vc120-mt-gd-1_59.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="torrent.dll">
