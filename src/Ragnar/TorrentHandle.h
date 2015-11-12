@@ -49,6 +49,8 @@ namespace Ragnar
 
         TorrentStatus^ GetStatus();
 
+		TorrentStatus^ QueryStatus();
+
         System::Collections::Generic::IEnumerable<PartialPieceInfo^>^ GetDownloadQueue();
 
         void ResetPieceDeadline(int pieceIndex);
@@ -61,6 +63,8 @@ namespace Ragnar
 
         cli::array<long long>^ GetFileProgresses();
 
+		cli::array<long long>^ GetFileProgressesFast(cli::array<long long>^ result);
+
         void ClearError();
 
         void AddTracker(AnnounceEntry^ entry);
@@ -69,13 +73,17 @@ namespace Ragnar
 
         System::Collections::Generic::IEnumerable<AnnounceEntry^>^ GetTrackers();
 
-        // url_seeds()
-        // add_url_seed()
-        // remove_url_seed()
+		property cli::array<System::String^, 1>^ UrlSeeds { cli::array<System::String^, 1>^ get(); }
 
-        // http_seeds()
-        // remove_http_seed()
-        // add_http_seed()
+		void AddUrlSeed(System::String^ url);
+
+		void RemoveUrlSeed(System::String^ url);
+
+		property cli::array<System::String^, 1>^ HttpSeeds { cli::array<System::String^, 1>^ get(); }
+
+		void AddHttpSeed(System::String^ url);
+
+		void RemoveHttpSeed(System::String^ url);
 
         // add_extension()
 
@@ -154,6 +162,7 @@ namespace Ragnar
         property bool SequentialDownload { bool get(); void set(bool value); }
 
         // TODO: void connect_peer (tcp::endpoint const& adr, int source = 0) const;
+		void ConnectPeer(System::Net::IPEndPoint^ point, int source);
 
         property int MaxUploads { int get(); void set(int value); }
 
@@ -174,5 +183,7 @@ namespace Ragnar
         property bool IsSeed { bool get(); }
 
         property bool HasMetadata { bool get(); }
+
+		property bool IsValid { bool get(); }
     };
 }

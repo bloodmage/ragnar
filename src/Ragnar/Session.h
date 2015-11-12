@@ -98,8 +98,10 @@ namespace Ragnar
 
         virtual void SetKey(int key);
 
-        virtual void ListenOn(int lower, int upper); // TODO: implement interface selector
+        virtual void ListenOn(int lower, int upper);
         
+		virtual void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+
         virtual property bool IsListening { bool get(); }
 
         virtual property int ListenPort { int get(); }
@@ -114,8 +116,9 @@ namespace Ragnar
 
         virtual void SetSettings(SessionSettings^ settings);
 
-        // TODO: pe_settings get_pe_settings() const;
-        // TODO: void set_pe_settings(pe_settings const& settings);
+		virtual PeSettings^ QueryPeerEncryptionSettings();
+
+		virtual void SetPeSettings(PeSettings^ settings);
 
         // TODO: void set_proxy (proxy_settings const& s);
         // TODO: proxy_settings proxy() const;

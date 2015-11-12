@@ -22,6 +22,17 @@
 #include "TorrentResumedAlert.h"
 #include "TorrentCheckedAlert.h"
 #include "UnwantedBlockAlert.h"
+#include "PerformanceAlert.h"
+#include "ListenFailedAlert.h"
+#include "ExternalIPAlert.h"
+#include "ListenSucceededAlert.h"
+#include "PeerBlockedAlert.h"
+#include "PeerDisconnectedAlert.h"
+#include "TrackerWarningAlert.h"
+#include "TrackerErrorAlert.h"
+#include "TrackerReplyAlert.h"
+#include "TrackerAnnounceAlert.h"
+#include "ScrapeFailedAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -145,7 +156,41 @@ namespace Ragnar
 
         case libtorrent::unwanted_block_alert::alert_type:
             return gcnew UnwantedBlockAlert(static_cast<libtorrent::unwanted_block_alert*>(alert.get()));
-        }
+        
+		case libtorrent::performance_alert::alert_type:
+			return gcnew PerformanceAlert(static_cast<libtorrent::performance_alert*>(alert.get()));
+
+		case libtorrent::listen_failed_alert::alert_type:
+			return gcnew ListenFailedAlert(static_cast<libtorrent::listen_failed_alert*>(alert.get()));
+
+		case libtorrent::external_ip_alert::alert_type:
+			return gcnew ExternalIPAlert(static_cast<libtorrent::external_ip_alert*>(alert.get()));
+
+		case libtorrent::listen_succeeded_alert::alert_type:
+			return gcnew ListenSucceededAlert(static_cast<libtorrent::listen_succeeded_alert*>(alert.get()));
+
+		case libtorrent::peer_blocked_alert::alert_type:
+			return gcnew PeerBlockedAlert(static_cast<libtorrent::peer_blocked_alert*>(alert.get()));
+
+		case libtorrent::peer_disconnected_alert::alert_type:
+			return gcnew PeerDisconnectedAlert(static_cast<libtorrent::peer_disconnected_alert*>(alert.get()));
+
+		case libtorrent::tracker_warning_alert::alert_type:
+			return gcnew TrackerWarningAlert(static_cast<libtorrent::tracker_warning_alert*>(alert.get()));
+
+		case libtorrent::tracker_error_alert::alert_type:
+			return gcnew TrackerErrorAlert(static_cast<libtorrent::tracker_error_alert*>(alert.get()));
+
+		case libtorrent::tracker_reply_alert::alert_type:
+			return gcnew TrackerReplyAlert(static_cast<libtorrent::tracker_reply_alert*>(alert.get()));
+
+		case libtorrent::tracker_announce_alert::alert_type:
+			return gcnew TrackerAnnounceAlert(static_cast<libtorrent::tracker_announce_alert*>(alert.get()));
+
+		case libtorrent::scrape_failed_alert::alert_type:
+			return gcnew ScrapeFailedAlert(static_cast<libtorrent::scrape_failed_alert*>(alert.get()));
+		}
+
 
         return nullptr;
     }

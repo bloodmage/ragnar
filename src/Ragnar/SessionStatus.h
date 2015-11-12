@@ -1,5 +1,7 @@
 #pragma once
 
+#include "UtpStatus.h"
+
 namespace libtorrent
 {
     struct session_status;
@@ -99,7 +101,7 @@ namespace Ragnar
 
         property int DhtTotalAllocations { int get(); }
 
-        // TODO:    utp_status utp_stats;
+		property UtpStatus^ UtpStats { UtpStatus^ get();  }
 
         property int PeerlistSize { int get(); }
     };

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SessionStatus.h"
-
+#include "UtpStatus.h"
 #include <libtorrent\session_status.hpp>
 
 namespace Ragnar
@@ -204,6 +204,11 @@ namespace Ragnar
     {
         return this->_status->dht_global_nodes;
     }
+
+	UtpStatus^ SessionStatus::UtpStats::get()
+	{
+		return gcnew UtpStatus(this->_status->utp_stats);
+	}
 
     int SessionStatus::DhtTotalAllocations::get()
     {

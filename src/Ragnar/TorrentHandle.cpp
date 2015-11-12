@@ -71,6 +71,12 @@ namespace Ragnar
         return gcnew TorrentStatus(this->_handle->status());
     }
 
+	TorrentStatus^ TorrentHandle::QueryStatus()
+	{
+		return gcnew TorrentStatus(this->_handle->status());
+	}
+
+
     System::Collections::Generic::IEnumerable<PartialPieceInfo^>^ TorrentHandle::GetDownloadQueue()
     {
         std::vector<libtorrent::partial_piece_info> queue;
@@ -121,6 +127,19 @@ namespace Ragnar
         return result;
     }
 
+	cli::array<long long>^ TorrentHandle::GetFileProgressesFast(cli::array<long long>^ result)
+	{
+		std::vector<libtorrent::size_type> fp;
+		this->_handle->file_progress(fp, libtorrent::torrent_handle::piece_granularity);
+
+		for (int i = 0; i < fp.size(); i++)
+		{
+			result[i] = fp[i];
+		}
+
+		return result;
+	}
+
     void TorrentHandle::ClearError()
     {
         this->_handle->clear_error();
@@ -143,6 +162,76 @@ namespace Ragnar
 
         return result;
     }
+
+	cli::array<System::String^, 1>^ TorrentHandle::UrlSeeds::get()
+	{
+		std::set<std::string> urls = this->_handle->url_seeds();
+
+		if (urls.empty())
+		{
+			return gcnew cli::array<System::String^, 1>(0);
+		}
+
+		cli::array<System::String^, 1>^ data = gcnew cli::array<System::String^, 1>(urls.size());
+
+		std::set<std::string>::iterator it;
+		int index = 0;
+		for (it = urls.begin(); it != urls.end(); ++it)
+		{
+			std::string url = *it;
+			data[index] = Utils::GetManagedStringFromStandardString(url);
+			index++;
+		}
+
+		return data;
+	}
+
+	void TorrentHandle::AddUrlSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->add_url_seed(ur);
+	}
+
+	void TorrentHandle::RemoveUrlSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->remove_url_seed(ur);
+	}
+
+	cli::array<System::String^, 1>^ TorrentHandle::HttpSeeds::get()
+	{
+		std::set<std::string> urls = this->_handle->http_seeds();
+
+		if (urls.empty())
+		{
+			return gcnew cli::array<System::String^, 1>(0);
+		}
+
+		cli::array<System::String^, 1>^ data = gcnew cli::array<System::String^, 1>(urls.size());
+
+		std::set<std::string>::iterator it;
+		int index = 0;
+		for (it = urls.begin(); it != urls.end(); ++it)
+		{
+			std::string url = *it;
+			data[index] = Utils::GetManagedStringFromStandardString(url);
+			index++;
+		}
+
+		return data;
+	}
+
+	void TorrentHandle::AddHttpSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->add_http_seed(ur);
+	}
+
+	void TorrentHandle::RemoveHttpSeed(System::String^ url)
+	{
+		std::string ur = Utils::GetStdStringFromManagedString(url);
+		this->_handle->remove_http_seed(ur);
+	}
 
     void TorrentHandle::Pause()
     {
@@ -395,4 +484,16 @@ namespace Ragnar
     {
         return this->_handle->has_metadata();
     }
+	
+	bool TorrentHandle::IsValid::get()
+	{
+		return this->_handle->is_valid();
+	}
+
+	void TorrentHandle::ConnectPeer(System::Net::IPEndPoint^ point, int source)
+	{
+		boost::asio::ip::address_v4 add(point->Address->Address);
+		boost::asio::ip::tcp::endpoint po(add, point->Port);
+		this->_handle->connect_peer(po, source);
+	}
 }

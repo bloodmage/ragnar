@@ -47,6 +47,21 @@ namespace Ragnar
             return hash;
         }
 
+		static System::Text::Encoding^ windows = System::Text::Encoding::GetEncoding("Windows-1252");
+
+		static String^ GetManagedStringFromStandardString(std::string str)
+		{
+			System::String^ bad = gcnew System::String(str.c_str());
+			array<byte, 1>^ data = windows->GetBytes(bad);
+
+			System::String^ fixed = System::Text::Encoding::UTF8->GetString(data);
+			
+			delete bad;
+			delete data;
+			
+			return fixed;
+		}
+
         static std::string GetStdStringFromManagedString(String^ str)
         {
             if (str->Length == 0)

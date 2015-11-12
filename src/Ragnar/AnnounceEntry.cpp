@@ -50,6 +50,16 @@ namespace Ragnar
         return gcnew String(this->_entry->message.c_str());
     }
 
+	int AnnounceEntry::NextAnnounceIn::get()
+	{
+		return this->_entry->next_announce_in();
+	}
+
+	int AnnounceEntry::MinAnnounceIn::get()
+	{
+		return this->_entry->min_announce_in();
+	}
+
     int AnnounceEntry::ScrapeIncomplete::get()
     {
         return this->_entry->scrape_incomplete;

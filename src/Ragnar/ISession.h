@@ -10,7 +10,7 @@ namespace Ragnar
     ref class SessionSettings;
     ref class SessionStatus;
     ref class TorrentHandle;
-
+	ref class PeSettings;
     public interface class ISession
     {
         void LoadState(cli::array<byte>^ buffer);
@@ -42,6 +42,8 @@ namespace Ragnar
 
         void ListenOn(int lower, int upper);
 
+		void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+
         property bool IsListening { bool get(); }
 
         property int ListenPort { int get(); }
@@ -55,6 +57,10 @@ namespace Ragnar
         SessionSettings^ QuerySettings();
 
         void SetSettings(SessionSettings^ settings);
+
+	    PeSettings^ QueryPeerEncryptionSettings();
+
+	    void SetPeSettings(PeSettings^ settings);
 
         property IAlertFactory^ Alerts { IAlertFactory^ get(); }
 
