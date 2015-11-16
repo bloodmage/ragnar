@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ragnar.Client</RootNamespace>
     <AssemblyName>Ragnar.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -127,6 +128,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,23 +153,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_chrono-vc120-mt-gd-1_59.dll">
-      <Link>boost_chrono-vc120-mt-gd-1_59.dll</Link>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_chrono-vc140-mt-gd-1_59.dll">
+      <Link>boost_chrono-vc140-mt-gd-1_59.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_date_time-vc120-mt-gd-1_59.dll">
-      <Link>boost_date_time-vc120-mt-gd-1_59.dll</Link>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_date_time-vc140-mt-gd-1_59.dll">
+      <Link>boost_date_time-vc140-mt-gd-1_59.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_system-vc120-mt-gd-1_59.dll">
-      <Link>boost_system-vc120-mt-gd-1_59.dll</Link>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_system-vc140-mt-gd-1_59.dll">
+      <Link>boost_system-vc140-mt-gd-1_59.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_thread-vc120-mt-gd-1_59.dll">
-      <Link>boost_thread-vc120-mt-gd-1_59.dll</Link>
+    <Content Include="..\..\packages\boost_1_59_0\stage\lib\boost_thread-vc140-mt-gd-1_59.dll">
+      <Link>boost_thread-vc140-mt-gd-1_59.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\packages\libtorrent-rasterbar-1.0.6\bin\msvc-12.0\debug\address-model-64\boost-link-shared\boost-source\threading-multi\torrent.dll">
+    <Content Include="..\..\packages\libtorrent-rasterbar-1.0.7\bin\msvc-14.0\Release\address-model-64\boost-link-shared\boost-source\threading-multi\torrent.dll">
       <Link>torrent.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

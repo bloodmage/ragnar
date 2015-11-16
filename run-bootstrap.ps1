@@ -10,10 +10,10 @@ $7ZA_EXE = Join-Path $7ZA_ROOT "7za.exe"
 $BOOST_URL = "http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.zip"
 $BOOST_PKG = Join-Path $LIBS_DIR "boost_1_59_0.zip"
 $BOOST_ROOT = Join-Path $LIBS_DIR "boost_1_59_0"
-$LIBTORRENT_URL = "https://github.com/arvidn/libtorrent/releases/download/libtorrent-1_0_6/libtorrent-rasterbar-1.0.6.tar.gz" #"http://downloads.sourceforge.net/project/libtorrent/libtorrent/libtorrent-rasterbar-1.0.2.tar.gz"
-$LIBTORRENT_PKG = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.6.tar.gz"
-$LIBTORRENT_TAR = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.6.tar"
-$LIBTORRENT_ROOT = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.6"
+$LIBTORRENT_URL = "https://github.com/arvidn/libtorrent/releases/download/libtorrent-1_0_7/libtorrent-rasterbar-1.0.7.tar.gz" #"http://downloads.sourceforge.net/project/libtorrent/libtorrent/libtorrent-rasterbar-1.0.2.tar.gz"
+$LIBTORRENT_PKG = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.7.tar.gz"
+$LIBTORRENT_TAR = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.7.tar"
+$LIBTORRENT_ROOT = Join-Path $LIBS_DIR "libtorrent-rasterbar-1.0.7"
 
 function Download-File {
     param (
@@ -88,7 +88,7 @@ Start-Process "$boost_bootstrap" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROO
 # Build Boost
 Write-Host "Building Boost. This *WILL* take a while."
 $boost_b2 = Join-Path $BOOST_ROOT "b2.exe"
-Start-Process "$boost_b2" -ArgumentList "toolset=msvc-12.0 address-model=64 link=shared runtime-link=shared --with-date_time --with-system --with-thread" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
+Start-Process "$boost_b2" -ArgumentList "-q -j4 toolset=msvc-14.0 address-model=64 link=shared runtime-link=shared --with-date_time --with-system --with-thread" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
 
 # Build libtorrent
 Write-Host "Building libtorrent. May take a while."
@@ -97,6 +97,9 @@ $env:BOOST_ROOT = "$BOOST_ROOT"
 $env:CL = "/I$BOOST_ROOT"
 
 $bjam = Join-Path $BOOST_ROOT "bjam.exe"
-$libtorrent_args = "toolset=msvc-12.0 address-model=64 boost=source boost-link=shared geoip=off encryption=tommath link=shared variant"
+$libtorrent_args = "-q -j4 toolset=msvc-14.0 address-model=64 boost=source boost-link=shared geoip=off encryption=tommath link=shared variant"
 Start-Process "$bjam" -ArgumentList "$libtorrent_args=debug" -NoNewWindow -Wait -WorkingDirectory $LIBTORRENT_ROOT
 Start-Process "$bjam" -ArgumentList "$libtorrent_args=release" -NoNewWindow -Wait -WorkingDirectory $LIBTORRENT_ROOT
+
+Write-Host "Building success."
+Read-Host
