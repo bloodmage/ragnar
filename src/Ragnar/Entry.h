@@ -34,9 +34,10 @@ namespace Ragnar
 			Entry(libtorrent::entry * entry) { this->entry = entry; }
 		public:
 			static Entry^ Wrap(libtorrent::entry* entry);
+			static Entry^ Wrap(libtorrent::entry const& entry);
 			static Entry^ Decode(array<byte, 1>^ data);
 			property DataType Type { DataType get(); }
-			~Entry() { if (orphan&&entry != NULL) { delete entry; entry = NULL; } }
+			~Entry();
 			!Entry() { Entry::~Entry(); }
 			array<byte, 1>^ Encode();
 		};

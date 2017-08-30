@@ -96,6 +96,7 @@
     <ClInclude Include="AnnounceEntry.h" />
     <ClInclude Include="BitField.h" />
     <ClInclude Include="Collections\Vector.h" />
+    <ClInclude Include="CreateTorrent.h" />
     <ClInclude Include="DataType.h" />
     <ClInclude Include="DhtDynamicItemPutter.h" />
     <ClInclude Include="DhtImmutableItemAlert.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="BitField.cpp" />
     <ClCompile Include="boostinclude.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
+    <ClCompile Include="CreateTorrent.cpp" />
     <ClCompile Include="DhtDynamicItemPutter.cpp" />
     <ClCompile Include="DhtImmutableItemAlert.cpp" />
     <ClCompile Include="DhtLookup.cpp" />

@@ -24,6 +24,12 @@ namespace Ragnar
 				return gcnew EntryDictionary(entry);
 			return nullptr;
 		}
+		Entry^ Entry::Wrap(libtorrent::entry const& entry)
+		{
+			auto ret = Wrap(new libtorrent::entry(entry));
+			ret->orphan = true;
+			return ret;
+		}
 		Entry^ Entry::Decode(array<byte, 1>^ data)
 		{
 			pin_ptr<byte> data_ = &data[0];
@@ -40,6 +46,8 @@ namespace Ragnar
 		{
 			return DataType(entry->type());
 		}
+		Entry::~Entry() { if (orphan&&entry != NULL) { delete entry; entry = NULL; } }
+
 		EntryInteger::EntryInteger(libtorrent::entry* entry) : Entry(entry)	{ int_ = &entry->integer(); }
 		EntryString::EntryString(libtorrent::entry* entry) : Entry(entry) { str = &entry->string(); }
 		EntryList::EntryList(libtorrent::entry* entry) : Entry(entry) { list = &entry->list(); }
