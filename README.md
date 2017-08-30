@@ -1,6 +1,7 @@
 # Ragnar (32bit #DEFAULT# or 64bit - libtorrent 1.1.4) 
 Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (mostly) complete interface to the underlying C++ library.
 
+Now superchaged with hooking to libtorrent from .NET directly.
 
 ## How to build from source
 The repository includes a `bootstrap.bat` file which runs the `run-bootstrap.ps1` script. This will download and compile both Boost and libtorrent automatically.
