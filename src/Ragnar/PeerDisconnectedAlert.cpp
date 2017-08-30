@@ -8,7 +8,7 @@ namespace Ragnar
 	PeerDisconnectedAlert::PeerDisconnectedAlert(libtorrent::peer_disconnected_alert* alert)
 		: PeerAlert((libtorrent::peer_alert*) alert)
 	{
-		this->alert = alert;
+		this->alert = new libtorrent::peer_disconnected_alert(*alert);
 	}
 
 	PeerDisconnectedAlert::~PeerDisconnectedAlert()

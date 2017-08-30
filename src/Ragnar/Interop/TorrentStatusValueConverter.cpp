@@ -1,8 +1,9 @@
-#include "stdafx.h"
+#include "Stdafx.h"
 #include "../TorrentStatus.h"
 #include "TorrentStatusValueConverter.h"
 
 #include <libtorrent\torrent_handle.hpp>
+#include <libtorrent\torrent_status.hpp>
 
 namespace Ragnar
 {

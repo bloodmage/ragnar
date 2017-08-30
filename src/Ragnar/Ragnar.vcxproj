@@ -1,64 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|x64">
+    <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
+    <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E017AB3D-B752-412D-8109-7A233331D7E2}</ProjectGuid>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Ragnar</RootNamespace>
-    <BoostDir>$(SolutionDir)\packages\boost_1_59_0</BoostDir>
-    <LibtorrentDir>$(SolutionDir)\packages\libtorrent-rasterbar-1.0.7</LibtorrentDir>
+    <BoostDir>$(SolutionDir)\packages\boost_1_65_0</BoostDir>
+    <LibtorrentDir>$(SolutionDir)\packages\libtorrent-rasterbar-1.1.4</LibtorrentDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <PlatformToolset>v120</PlatformToolset>
+    <CLRSupport>OldSyntax</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <ReferencePath>Debug;$(ReferencePath)</ReferencePath>
     <IncludePath>$(BoostDir);$(LibtorrentDir)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BoostDir)\stage\lib;$(LibtorrentDir)\bin\msvc-14.0\debug\address-model-64\boost-link-shared\boost-source\threading-multi;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(BoostDir)\stage\lib;$(LibtorrentDir)\bin\msvc-12.0\debug\boost-link-shared\export-extra-on\threading-multi;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(BoostDir);$(LibtorrentDir)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BoostDir)\stage\lib;$(LibtorrentDir)\bin\msvc-14.0\release\address-model-64\boost-link-shared\boost-source\threading-multi;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(BoostDir)\stage\lib;$(LibtorrentDir)\bin\msvc-12.0\debug\boost-link-shared\export-extra-on\threading-multi;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
@@ -67,13 +67,17 @@
       <AdditionalDependencies>torrent.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED</PreprocessorDefinitions>
-      <Optimization>Full</Optimization>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <AssemblerOutput>All</AssemblerOutput>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>true</CompileAsManaged>
+      <PreprocessKeepComments>true</PreprocessKeepComments>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -92,23 +96,35 @@
     <ClInclude Include="AnnounceEntry.h" />
     <ClInclude Include="BitField.h" />
     <ClInclude Include="Collections\Vector.h" />
+    <ClInclude Include="DataType.h" />
+    <ClInclude Include="DhtDynamicItemPutter.h" />
+    <ClInclude Include="DhtImmutableItemAlert.h" />
     <ClInclude Include="DhtLookup.h" />
+    <ClInclude Include="DhtMutableItemAlert.h" />
+    <ClInclude Include="DhtPutAlert.h" />
     <ClInclude Include="DhtRoutingBucket.h" />
+    <ClInclude Include="ED25519Helper.h" />
+    <ClInclude Include="Entry.h" />
+    <ClInclude Include="ErrorCodeEnum.h" />
     <ClInclude Include="ExternalIPAlert.h" />
     <ClInclude Include="FileCompletedAlert.h" />
     <ClInclude Include="FileEntry.h" />
     <ClInclude Include="FileRenamedAlert.h" />
+    <ClInclude Include="FileStorage.h" />
     <ClInclude Include="Fingerprint.h" />
     <ClInclude Include="IAlertFactory.h" />
     <ClInclude Include="ISession.h" />
+    <ClInclude Include="LazyEntry.h" />
     <ClInclude Include="ListenFailedAlert.h" />
     <ClInclude Include="ListenSucceededAlert.h" />
     <ClInclude Include="MetadataReceivedAlert.h" />
+    <ClInclude Include="Operations.h" />
     <ClInclude Include="PartialPieceInfo.h" />
     <ClInclude Include="PeerAlert.h" />
     <ClInclude Include="PeerBanAlert.h" />
     <ClInclude Include="PeerBlockedAlert.h" />
     <ClInclude Include="PeerConnectAlert.h" />
+    <ClInclude Include="PeerConnectionHandle.h" />
     <ClInclude Include="PeerDisconnectedAlert.h" />
     <ClInclude Include="PeerInfo.h" />
     <ClInclude Include="PeerUnsnubbedAlert.h" />
@@ -125,12 +141,14 @@
     <ClInclude Include="SessionAlertCategory.h" />
     <ClInclude Include="SessionSettings.h" />
     <ClInclude Include="SessionStatus.h" />
+    <ClInclude Include="SHA1.h" />
     <ClInclude Include="SHA1Hash.h" />
     <ClInclude Include="StateChangedAlert.h" />
     <ClInclude Include="StateUpdateAlert.h" />
     <ClInclude Include="StatsAlert.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Interop\StringValueConverter.h" />
+    <ClInclude Include="StorageInterfaceBase.h" />
     <ClInclude Include="StorageMovedAlert.h" />
     <ClInclude Include="TorrentAddedAlert.h" />
     <ClInclude Include="TorrentAlert.h" />
@@ -141,6 +159,7 @@
     <ClInclude Include="TorrentHandle.h" />
     <ClInclude Include="TorrentInfo.h" />
     <ClInclude Include="TorrentPausedAlert.h" />
+    <ClInclude Include="Plugin.h" />
     <ClInclude Include="TorrentRemovedAlert.h" />
     <ClInclude Include="TorrentResumedAlert.h" />
     <ClInclude Include="TorrentState.h" />
@@ -163,14 +182,23 @@
     <ClCompile Include="AlertFactory.cpp" />
     <ClCompile Include="AnnounceEntry.cpp" />
     <ClCompile Include="BitField.cpp" />
+    <ClCompile Include="boostinclude.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
+    <ClCompile Include="DhtDynamicItemPutter.cpp" />
+    <ClCompile Include="DhtImmutableItemAlert.cpp" />
     <ClCompile Include="DhtLookup.cpp" />
+    <ClCompile Include="DhtMutableItemAlert.cpp" />
+    <ClCompile Include="DhtPutAlert.cpp" />
     <ClCompile Include="DhtRoutingBucket.cpp" />
+    <ClCompile Include="ED25519Helper.cpp" />
+    <ClCompile Include="Entry.cpp" />
     <ClCompile Include="ExternalIPAlert.cpp" />
     <ClCompile Include="FileCompletedAlert.cpp" />
     <ClCompile Include="FileEntry.cpp" />
     <ClCompile Include="FileRenamedAlert.cpp" />
+    <ClCompile Include="FileStorage.cpp" />
     <ClCompile Include="Fingerprint.cpp" />
+    <ClCompile Include="LazyEntry.cpp" />
     <ClCompile Include="ListenFailedAlert.cpp" />
     <ClCompile Include="ListenSucceededAlert.cpp" />
     <ClCompile Include="MetadataReceivedAlert.cpp" />
@@ -179,27 +207,31 @@
     <ClCompile Include="PeerBanAlert.cpp" />
     <ClCompile Include="PeerBlockedAlert.cpp" />
     <ClCompile Include="PeerConnectAlert.cpp" />
+    <ClCompile Include="PeerConnectionHandle.cpp" />
     <ClCompile Include="PeerDisconnectedAlert.cpp" />
     <ClCompile Include="PeerInfo.cpp" />
     <ClCompile Include="PeerUnsnubbedAlert.cpp" />
     <ClCompile Include="PerformanceAlert.cpp" />
     <ClCompile Include="PeSettings.cpp" />
     <ClCompile Include="PieceFinishedAlert.cpp" />
+    <ClCompile Include="Plugin.cpp" />
     <ClCompile Include="SaveResumeDataAlert.cpp" />
     <ClCompile Include="ScrapeFailedAlert.cpp" />
     <ClCompile Include="ScrapeReplyAlert.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionSettings.cpp" />
     <ClCompile Include="SessionStatus.cpp" />
+    <ClCompile Include="SHA1.cpp" />
     <ClCompile Include="SHA1Hash.cpp" />
     <ClCompile Include="StateChangedAlert.cpp" />
     <ClCompile Include="StateUpdateAlert.cpp" />
     <ClCompile Include="StatsAlert.cpp" />
     <ClCompile Include="Stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Interop\StringValueConverter.cpp" />
+    <ClCompile Include="StorageInterfaceBase.cpp" />
     <ClCompile Include="StorageMovedAlert.cpp" />
     <ClCompile Include="TorrentAddedAlert.cpp" />
     <ClCompile Include="TorrentAlert.cpp" />

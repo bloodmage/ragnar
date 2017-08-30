@@ -5,6 +5,8 @@ using Microsoft.Win32;
 using Ragnar.Client.Messages;
 using Ragnar.Client.Models;
 using Ragnar.Client.Services;
+using Ragnar.Client.Views;
+using System.IO;
 
 namespace Ragnar.Client.ViewModels
 {
@@ -45,6 +47,7 @@ namespace Ragnar.Client.ViewModels
 
         public void Handle(TorrentUpdatedMessage message)
         {
+
             var torrent = Torrents.SingleOrDefault(t => t.InfoHash == message.Torrent.InfoHash);
             if (torrent == null) return;
 
@@ -78,6 +81,24 @@ namespace Ragnar.Client.ViewModels
                 var torrentInfo = new TorrentInfo(dialog.FileName);
                 _windowManager.ShowDialog(new AddTorrentViewModel(_eventAggregator, torrentInfo));
             }
+        }
+
+        public void DHTTest()
+        {
+            new DHTInteroperate().Show();
+        }
+
+        public void MSGTest()
+        {
+            (SessionService.Instance._session as Session).AddTorrentExtension(new Ragnar.Client.Plugin.MessagePlugin());
+            var msg = new MessagePassing();
+            msg.Show();
+            var hash = Ragnar.Client.Plugin.MessagePassingChannels.Channels().First();
+            msg.Install(hash);
+
+            var _addParams = AddTorrentParams.FromInfoHash(new SHA1Hash(hash));
+            _addParams.SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            _eventAggregator.PublishOnBackgroundThread(new AddTorrentMessage(_addParams));
         }
     }
 }

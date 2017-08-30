@@ -1,8 +1,11 @@
 #pragma once
-
+namespace libtorrent
+{
+	typedef unsigned char byte;
+}
+using libtorrent::byte;
 namespace Ragnar
 {
-    typedef unsigned char byte;
 
     ref class AddTorrentParams;
     interface class IAlertFactory;
@@ -11,6 +14,7 @@ namespace Ragnar
     ref class SessionStatus;
     ref class TorrentHandle;
 	ref class PeSettings;
+
     public interface class ISession
     {
         void LoadState(cli::array<byte>^ buffer);
@@ -40,9 +44,9 @@ namespace Ragnar
 
         void SetKey(int key);
 
-        void ListenOn(int lower, int upper);
+        int ListenOn(int lower, int upper);
 
-		void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+		int ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
 
         property bool IsListening { bool get(); }
 
@@ -58,9 +62,9 @@ namespace Ragnar
 
         void SetSettings(SessionSettings^ settings);
 
-	    PeSettings^ QueryPeerEncryptionSettings();
+		PeSettings^ QueryPeerEncryptionSettings();
 
-	    void SetPeSettings(PeSettings^ settings);
+		void SetPeSettings(PeSettings^ settings);
 
         property IAlertFactory^ Alerts { IAlertFactory^ get(); }
 

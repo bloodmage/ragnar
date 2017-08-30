@@ -12,10 +12,10 @@ namespace Ragnar
 	private:
 		libtorrent::bitfield* field;
 	internal:
-		 BitField(libtorrent::bitfield* field);
+		BitField(libtorrent::bitfield* field);
 	public:
 		property bool AllTrue { bool get();  }
-		property bool default[int] 
+		property bool default[int]
 		{
 			bool get(int);
 		}

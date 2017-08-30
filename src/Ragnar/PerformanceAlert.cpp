@@ -10,7 +10,7 @@ namespace Ragnar
 	PerformanceAlert::PerformanceAlert(libtorrent::performance_alert* alert)
 		: TorrentAlert((libtorrent::torrent_alert*) alert)
 	{
-		this->_alert = alert;
+		this->_alert = new libtorrent::performance_alert(*alert);
 	}
 
 	PerformanceWarningType^ PerformanceAlert::WarningType::get()

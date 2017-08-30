@@ -7,6 +7,8 @@ namespace libtorrent
 
 namespace Ragnar
 {
+	ref class SHA1Hash;
+
     public ref class FileEntry
     {
     private:
@@ -30,6 +32,11 @@ namespace Ragnar
 
         // TODO: std::time_t mtime;
 
-        // TODO: sha1_hash filehash;
+        // sha1_hash filehash;
+		property SHA1Hash^ FileHash{SHA1Hash^ get(); }
+
+		property bool PadFile { bool get(); }
+
+
     };
 }

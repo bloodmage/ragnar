@@ -5,7 +5,7 @@
 #include "TorrentStatus.h"
 #include "Utils.h"
 
-#include <libtorrent\torrent_handle.hpp>
+#include <libtorrent\torrent_status.hpp>
 
 namespace Ragnar
 {
@@ -21,17 +21,17 @@ namespace Ragnar
 
     System::String^ TorrentStatus::Error::get()
     {
-        return gcnew System::String(this->_status->error.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_status->error);
     }
 
     System::String^ TorrentStatus::SavePath::get()
     {
-        return gcnew System::String(this->_status->save_path.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_status->save_path);
     }
 
     System::String^ TorrentStatus::Name::get()
     {
-        return gcnew System::String(this->_status->name.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_status->name);
     }
 
     long long TorrentStatus::TotalDownload::get()
@@ -274,10 +274,6 @@ namespace Ragnar
         return Nullable<TimeSpan>(TimeSpan::FromSeconds(this->_status->last_scrape));
     }
 
-    int TorrentStatus::SparseRegions::get()
-    {
-        return this->_status->sparse_regions;
-    }
 
     int TorrentStatus::Priority::get()
     {
@@ -371,10 +367,10 @@ namespace Ragnar
 		case libtorrent::torrent_status::state_t::downloading:
 		case libtorrent::torrent_status::state_t::seeding:
 		{
-			libtorrent::bitfield a = this->_status->pieces; 
+			libtorrent::bitfield a = this->_status->pieces;
 			return gcnew BitField(&a);
 		}
-			break;
+		break;
 		default:
 			return nullptr;
 		}
@@ -389,4 +385,5 @@ namespace Ragnar
 		}
 		return nullptr;
 	}
+
 }

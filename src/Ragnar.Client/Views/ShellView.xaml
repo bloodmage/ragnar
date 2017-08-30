@@ -13,6 +13,8 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Add Torrent" cal:Message.Attach="ShowAddTorrent" />
+                <MenuItem Header="DHTTest" cal:Message.Attach="DHTTest" />
+                <MenuItem Header="MsgPluginTest" cal:Message.Attach="MSGTest" />
             </MenuItem>
         </Menu>
         

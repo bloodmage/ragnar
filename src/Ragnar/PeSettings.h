@@ -22,12 +22,12 @@ namespace Ragnar
 	public:
 		~PeSettings();
 
-		property PeSettings_EncPolicy^ OutgoingEncryptionPolicy { PeSettings_EncPolicy^ get(); void set(PeSettings_EncPolicy^); }
-		
-		property PeSettings_EncPolicy^ IncomingEncryptionPolicy { PeSettings_EncPolicy^ get(); void set(PeSettings_EncPolicy^); }
-		
-		property PeSettings_EncLevel^ AllowedEncryptionLevel { PeSettings_EncLevel^ get(); void set(PeSettings_EncLevel^); }
-		
+		property PeSettings_EncPolicy OutgoingEncryptionPolicy { PeSettings_EncPolicy get(); void set(PeSettings_EncPolicy); }
+
+		property PeSettings_EncPolicy IncomingEncryptionPolicy { PeSettings_EncPolicy get(); void set(PeSettings_EncPolicy); }
+
+		property PeSettings_EncLevel AllowedEncryptionLevel { PeSettings_EncLevel get(); void set(PeSettings_EncLevel); }
+
 		property bool PreferRC4 { bool get(); void set(bool); }
 	};
 }

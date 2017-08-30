@@ -10,6 +10,6 @@ namespace Ragnar
 		// The entire stream is encrypted with RC4
 		RC4 = 2,
 		// Both RC4 and plaintext connections are allowed.
-		Both =3
+		Both = 3
 	};
 }

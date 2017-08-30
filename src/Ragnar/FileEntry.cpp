@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "FileEntry.h"
+#include "SHA1Hash.h"
+#include "Utils.h"
 
 #include <libtorrent\file_storage.hpp>
 
@@ -17,7 +19,7 @@ namespace Ragnar
 
     System::String^ FileEntry::Path::get()
     {
-        return gcnew System::String(this->_entry->path.c_str());
+        return Utils::GetManagedStringFromStandardString(this->_entry->path);
     }
 
     long long FileEntry::Offset::get()
@@ -34,4 +36,14 @@ namespace Ragnar
     {
         return this->_entry->file_base;
     }
+
+	SHA1Hash^ FileEntry::FileHash::get()
+	{
+		return gcnew SHA1Hash(this->_entry->filehash);
+	}
+
+	bool FileEntry::PadFile::get()
+	{
+		return this->_entry->pad_file;
+	}
 }

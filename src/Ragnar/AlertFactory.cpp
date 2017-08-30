@@ -33,6 +33,9 @@
 #include "TrackerReplyAlert.h"
 #include "TrackerAnnounceAlert.h"
 #include "ScrapeFailedAlert.h"
+#include "DhtMutableItemAlert.h"
+#include "DhtImmutableItemAlert.h"
+#include "DhtPutAlert.h"
 
 #include <libtorrent\alert.hpp>
 #include <libtorrent\alert_types.hpp>
@@ -86,7 +89,7 @@ namespace Ragnar
 
     bool AlertFactory::PeekWait(System::TimeSpan timeout)
     {
-        libtorrent::alert const* a = this->_session.wait_for_alert(libtorrent::milliseconds(timeout.TotalMilliseconds));
+        libtorrent::alert const* a = this->_session.wait_for_alert(libtorrent::milliseconds((unsigned long)timeout.TotalMilliseconds));
         return a != 0;
     }
 
@@ -156,7 +159,7 @@ namespace Ragnar
 
         case libtorrent::unwanted_block_alert::alert_type:
             return gcnew UnwantedBlockAlert(static_cast<libtorrent::unwanted_block_alert*>(alert.get()));
-        
+
 		case libtorrent::performance_alert::alert_type:
 			return gcnew PerformanceAlert(static_cast<libtorrent::performance_alert*>(alert.get()));
 
@@ -189,8 +192,19 @@ namespace Ragnar
 
 		case libtorrent::scrape_failed_alert::alert_type:
 			return gcnew ScrapeFailedAlert(static_cast<libtorrent::scrape_failed_alert*>(alert.get()));
-		}
+			
+		case libtorrent::dht_mutable_item_alert::alert_type:
+			return gcnew DhtMutableItemAlert(static_cast<libtorrent::dht_mutable_item_alert*>(alert.get()));
 
+		case libtorrent::dht_immutable_item_alert::alert_type:
+			return gcnew DhtImmutableItemAlert(static_cast<libtorrent::dht_immutable_item_alert*>(alert.get()));
+
+		case libtorrent::dht_put_alert::alert_type:
+			return gcnew DhtPutAlert(static_cast<libtorrent::dht_put_alert*>(alert.get()));
+
+		default:
+			return gcnew Alert(alert.get());
+		}
 
         return nullptr;
     }

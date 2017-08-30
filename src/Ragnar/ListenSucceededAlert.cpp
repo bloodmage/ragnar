@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Alert.h"
 #include "ListenSucceededAlert.h"
+#include "Utils.h"
 
 #include <libtorrent\alert_types.hpp>
 
@@ -16,7 +17,7 @@ namespace Ragnar
 	{
 		auto endp = this->alert->endpoint;
 		std::string ip_str = endp.address().to_string();
-		System::Net::IPAddress^ ip_a = System::Net::IPAddress::Parse(gcnew System::String(ip_str.c_str()));
+		System::Net::IPAddress^ ip_a = System::Net::IPAddress::Parse(Utils::GetManagedStringFromStandardString(ip_str));
 		return gcnew System::Net::IPEndPoint(ip_a, (int)endp.port());
 	}
 

@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "SessionStatus.h"
 #include "UtpStatus.h"
+#include "DhtLookup.h"
+#include "DhtRoutingBucket.h"
+
 #include <libtorrent\session_status.hpp>
 
 namespace Ragnar
@@ -204,6 +207,28 @@ namespace Ragnar
     {
         return this->_status->dht_global_nodes;
     }
+
+	array<DhtLookup^, 1>^ SessionStatus::ActiveRequests::get()
+	{
+		if (lookupcache == nullptr)
+		{
+			lookupcache = gcnew array<DhtLookup^, 1>(this->_status->active_requests.size());
+			for (int i = 0; i < this->_status->active_requests.size(); i++)
+				lookupcache[i] = gcnew DhtLookup(this->_status->active_requests[i]);
+		}
+		return lookupcache;
+	}
+
+	array<DhtRoutingBucket^, 1>^ SessionStatus::DhtRoutingTable::get()
+	{
+		if (bucketcache == nullptr)
+		{
+			bucketcache = gcnew array<DhtRoutingBucket^, 1>(this->_status->dht_routing_table.size());
+			for (int i = 0; i < this->_status->dht_routing_table.size(); i++)
+				bucketcache[i] = gcnew DhtRoutingBucket(this->_status->dht_routing_table[i]);
+		}
+		return bucketcache;
+	}
 
 	UtpStatus^ SessionStatus::UtpStats::get()
 	{

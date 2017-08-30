@@ -11,7 +11,9 @@
 
 #include <libtorrent\peer_info.hpp>
 #include <libtorrent\torrent_handle.hpp>
-
+#include <libtorrent\session_status.hpp>
+#include <libtorrent\torrent_status.hpp>
+#include <libtorrent\announce_entry.hpp>
 namespace Ragnar
 {
     TorrentHandle::TorrentHandle(const libtorrent::torrent_handle &handle)
@@ -70,12 +72,6 @@ namespace Ragnar
     {
         return gcnew TorrentStatus(this->_handle->status());
     }
-
-	TorrentStatus^ TorrentHandle::QueryStatus()
-	{
-		return gcnew TorrentStatus(this->_handle->status());
-	}
-
 
     System::Collections::Generic::IEnumerable<PartialPieceInfo^>^ TorrentHandle::GetDownloadQueue()
     {
@@ -185,19 +181,19 @@ namespace Ragnar
 
 		return data;
 	}
-
+	
 	void TorrentHandle::AddUrlSeed(System::String^ url)
 	{
 		std::string ur = Utils::GetStdStringFromManagedString(url);
 		this->_handle->add_url_seed(ur);
 	}
-
+	
 	void TorrentHandle::RemoveUrlSeed(System::String^ url)
 	{
 		std::string ur = Utils::GetStdStringFromManagedString(url);
 		this->_handle->remove_url_seed(ur);
 	}
-
+	
 	cli::array<System::String^, 1>^ TorrentHandle::HttpSeeds::get()
 	{
 		std::set<std::string> urls = this->_handle->http_seeds();
@@ -220,19 +216,19 @@ namespace Ragnar
 
 		return data;
 	}
-
+	
 	void TorrentHandle::AddHttpSeed(System::String^ url)
 	{
 		std::string ur = Utils::GetStdStringFromManagedString(url);
 		this->_handle->add_http_seed(ur);
 	}
-
+	
 	void TorrentHandle::RemoveHttpSeed(System::String^ url)
 	{
 		std::string ur = Utils::GetStdStringFromManagedString(url);
 		this->_handle->remove_http_seed(ur);
 	}
-
+	
     void TorrentHandle::Pause()
     {
         this->_handle->pause();
@@ -332,7 +328,7 @@ namespace Ragnar
             return nullptr;
         }
 
-        return gcnew TorrentInfo(*ptr.get());
+        return gcnew TorrentInfo(ptr);
     }
 
     int TorrentHandle::GetFilePriority(int fileIndex)
@@ -484,12 +480,12 @@ namespace Ragnar
     {
         return this->_handle->has_metadata();
     }
-	
+
 	bool TorrentHandle::IsValid::get()
 	{
 		return this->_handle->is_valid();
 	}
-
+	
 	void TorrentHandle::ConnectPeer(System::Net::IPEndPoint^ point, int source)
 	{
 		boost::asio::ip::address_v4 add(point->Address->Address);

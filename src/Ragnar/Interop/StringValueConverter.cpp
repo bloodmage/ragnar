@@ -1,5 +1,6 @@
-#include "stdafx.h"
+#include "Stdafx.h"
 #include "StringValueConverter.h"
+#include "..\Utils.h"
 
 #include <msclr\marshal_cppstd.h>
 #include <string>
@@ -15,7 +16,7 @@ namespace Ragnar
 
         System::String^ StringValueConverter::From(const std::string &value)
         {
-            return gcnew System::String(value.c_str());
+			return Utils::GetManagedStringFromStandardString(value);
         }
     }
 }

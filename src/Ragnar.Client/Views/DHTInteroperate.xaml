@@ -1,0 +1,33 @@
+﻿<Window x:Class="Ragnar.Client.Views.DHTInteroperate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DHTInteroperate" Height="504" Width="913">
+    <Grid>
+        <Button x:Name="add1" Content="Add new static DHTITEM" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="178" Height="53" Click="add1_Click"/>
+        <Button x:Name="add2" Content="Add new dynamic DHTITEM" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="178" Height="53" Click="add2_Click"/>
+        <Button x:Name="retr1" Content="Retr static DHTITEM" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="178" Height="53" Click="retr1_Click"/>
+        <Button x:Name="retr2" Content="Retr dynamic DHTITEM" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Width="178" Height="53" Click="retr2_Click"/>
+        <Button x:Name="gen" Content="Generate keypair" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="178" Height="53" Click="gen_Click"/>
+        <Label Content="Keypair" HorizontalAlignment="Left" Margin="193,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="pubkey" Height="23" Margin="247,40,0,0" TextWrapping="Wrap" Text="77ff84905a91936367c01360803104f92432fcd904a43511876df5cdf3e7e548" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Public" HorizontalAlignment="Left" Margin="193,40,0,0" VerticalAlignment="Top"/>
+        <Label Content="Private" HorizontalAlignment="Left" Margin="193,70,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="privkey" Height="55" Margin="247,70,0,0" TextWrapping="Wrap" Text="e06d3183d14159228433ed599221b80bd0a5ce8352e4bdf0262f76786ef1c74db7e7a9fea2c0eb269d61e3b38e450a22e754941ac78479d6c54e1faf6037881d" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Trans" HorizontalAlignment="Left" Margin="193,190,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="transid" Height="23" Margin="247,190,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Sign" HorizontalAlignment="Left" Margin="193,220,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="sign" Height="55" Margin="247,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Value" HorizontalAlignment="Left" Margin="193,280,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="value" Margin="247,280,0,10" TextWrapping="Wrap" Text="12:Hello World!" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Last alert:" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="alertshow" Content="(none)" HorizontalAlignment="Left" Margin="80,300,0,0" VerticalAlignment="Top"/>
+        <Label Content="Public;R" HorizontalAlignment="Left" Margin="193,130,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="pubkeyrecv" Height="55" Margin="247,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275"/>
+        <Label Content="Salt" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="salt" HorizontalAlignment="Left" Height="23" Margin="46,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sha1" HorizontalAlignment="Left" Margin="10,360,0,10" TextWrapping="Wrap" Text="e5f96f6f38320f0f33959cb4d3d656452117aadb" Width="228"/>
+        <TextBox Margin="527,10,10,10" TextWrapping="Wrap" Text="" x:Name="dhtstat"/>
+        <Button x:Name="refresh" Content="Refresh" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="refresh_Click"/>
+
+    </Grid>
+</Window>

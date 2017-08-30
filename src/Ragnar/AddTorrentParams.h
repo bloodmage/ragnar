@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "StorageInterfaceBase.h"
 
 namespace libtorrent
 {
@@ -10,6 +11,7 @@ namespace libtorrent
 namespace Ragnar
 {
     ref class TorrentInfo;
+	ref class SHA1Hash;
 
     using namespace System;
     using namespace System::Collections::Generic;
@@ -22,6 +24,8 @@ namespace Ragnar
         TorrentInfo^ _info;
         IList<String^>^ _trackers;
         IList<String^>^ _urlSeeds;
+		Unsafe::StorageFuncParam^ storage;
+		SHA1Hash^ infohash;
 
     internal:
         libtorrent::add_torrent_params& get_ptr() { return *_params; }
@@ -58,6 +62,8 @@ namespace Ragnar
             void set(Ragnar::TorrentInfo^ value);
             Ragnar::TorrentInfo^ get();
         }
+		
+		property SHA1Hash^ InfoHash { SHA1Hash^ get(); void set(SHA1Hash^ value); }
 
         property cli::array<byte>^ ResumeData
         {
@@ -65,6 +71,12 @@ namespace Ragnar
             void set(cli::array<byte>^ value);
         }
 
+		property Unsafe::StorageFuncParam^ Storage
+		{
+			Unsafe::StorageFuncParam^ get();
+			void set(Unsafe::StorageFuncParam^ value);
+		}
+		
         property int MaxUploads { int get(); void set(int value); }
 
         property int MaxConnections { int get(); void set(int value); }
@@ -79,6 +91,8 @@ namespace Ragnar
             bool get();
         }
 
-        static AddTorrentParams^ FromMagnetUri(System::String^ uri);
-    };
+		static AddTorrentParams^ FromMagnetUri(System::String^ uri);
+		static AddTorrentParams^ FromTorrentInfo(Ragnar::TorrentInfo^ info);
+		static AddTorrentParams^ FromInfoHash(SHA1Hash^ hash);
+	};
 }

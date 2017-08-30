@@ -21,6 +21,12 @@
     <Filter Include="Source Files\Interop">
       <UniqueIdentifier>{8b049e74-b8a7-41b0-894b-dded875fed39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Unsafe">
+      <UniqueIdentifier>{f08a6c64-db23-4dad-8e6e-dcfa17a5f40d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unsafe">
+      <UniqueIdentifier>{6ecb152c-61fe-4c3a-ba1c-4802cea05a1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -173,22 +179,31 @@
     <ClInclude Include="ScrapeReplyAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PerformanceAlert.h">
+    <ClInclude Include="BitField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PerformanceWarningType.h">
+    <ClInclude Include="DhtLookup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ListenFailedAlert.h">
+    <ClInclude Include="DhtRoutingBucket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExternalIPAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListenFailedAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ListenSucceededAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BitField.h">
+    <ClInclude Include="PeSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PeSettings_EncLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PeSettings_EncPolicy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PeerBlockedAlert.h">
@@ -197,13 +212,13 @@
     <ClInclude Include="PeerDisconnectedAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TrackerWarningAlert.h">
+    <ClInclude Include="PerformanceAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TrackerErrorAlert.h">
+    <ClInclude Include="PerformanceWarningType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TrackerReplyAlert.h">
+    <ClInclude Include="ScrapeFailedAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TrackerAnnounceAlert.h">
@@ -212,26 +227,62 @@
     <ClInclude Include="TrackerAnnounceEventType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScrapeFailedAlert.h">
+    <ClInclude Include="TrackerErrorAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackerReplyAlert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackerWarningAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UtpStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DhtRoutingBucket.h">
+    <ClInclude Include="DhtDynamicItemPutter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DhtLookup.h">
+    <ClInclude Include="FileStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PeSettings.h">
+    <ClInclude Include="DhtMutableItemAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PeSettings_EncPolicy.h">
+    <ClInclude Include="DhtImmutableItemAlert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PeSettings_EncLevel.h">
+    <ClInclude Include="DhtPutAlert.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ED25519Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entry.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="Plugin.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="StorageInterfaceBase.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="LazyEntry.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="DataType.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="SHA1.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorCodeEnum.h">
+      <Filter>Header Files\Unsafe</Filter>
+    </ClInclude>
+    <ClInclude Include="PeerConnectionHandle.h">
+      <Filter>Header Files\Unsafe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -370,28 +421,40 @@
     <ClCompile Include="ScrapeReplyAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PerformanceAlert.cpp">
+    <ClCompile Include="BitField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtLookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtRoutingBucket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ListenFailedAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExternalIPAlert.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ListenSucceededAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BitField.cpp">
+    <ClCompile Include="ScrapeFailedAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PeerBlockedAlert.cpp">
+    <ClCompile Include="PeSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerformanceAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PeerDisconnectedAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TrackerWarningAlert.cpp">
+    <ClCompile Include="PeerBlockedAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalIPAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackerAnnounceAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrackerErrorAlert.cpp">
@@ -400,22 +463,49 @@
     <ClCompile Include="TrackerReplyAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TrackerAnnounceAlert.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScrapeFailedAlert.cpp">
+    <ClCompile Include="TrackerWarningAlert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UtpStatus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DhtRoutingBucket.cpp">
+    <ClCompile Include="DhtDynamicItemPutter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DhtLookup.cpp">
+    <ClCompile Include="FileStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PeSettings.cpp">
+    <ClCompile Include="DhtMutableItemAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtImmutableItemAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DhtPutAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ED25519Helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entry.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="Plugin.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="StorageInterfaceBase.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="LazyEntry.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="SHA1.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="PeerConnectionHandle.cpp">
+      <Filter>Source Files\Unsafe</Filter>
+    </ClCompile>
+    <ClCompile Include="boostinclude.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

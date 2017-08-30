@@ -13,9 +13,17 @@ namespace Ragnar
 
     PeerInfo::~PeerInfo()
     {
-        delete this->_info;
+		if (this->_info != NULL)
+		{
+			delete this->_info;
+			this->_info = NULL;
+		}
     }
 
+	PeerInfo::!PeerInfo()
+	{
+		this->~PeerInfo();
+	}
     PeerFlags PeerInfo::Flags::get()
     {
         return (PeerFlags)this->_info->flags;
@@ -122,15 +130,15 @@ namespace Ragnar
         return gcnew System::String(this->_info->country);
     }
 
-    System::String^ PeerInfo::InetAsName::get()
+    /*System::String^ PeerInfo::InetAsName::get()
     {
-        return gcnew System::String(this->_info->inet_as_name.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_info->inet_as_name);
     }
 
     int PeerInfo::InetAs::get()
     {
         return this->_info->inet_as;
-    }
+    }*/
 
     int PeerInfo::DownloadQueueLength::get()
     {
@@ -189,7 +197,7 @@ namespace Ragnar
 
     System::String^ PeerInfo::Client::get()
     {
-        return gcnew System::String(this->_info->client.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_info->client);
     }
 
     int PeerInfo::RemoteDownloadRate::get()

@@ -4,6 +4,7 @@
 #include "Utils.h"
 #include "Collections\Vector.h"
 #include "Interop\StringValueConverter.h"
+#include "SHA1Hash.h"
 
 #include <libtorrent\add_torrent_params.hpp>
 #include <libtorrent\file_pool.hpp>
@@ -46,7 +47,7 @@ namespace Ragnar
 
     System::String^ AddTorrentParams::Name::get()
     {
-        return gcnew System::String(this->_params->name.c_str());
+        return Utils::GetManagedStringFromStandardString(this->_params->name);
     }
 
     void AddTorrentParams::Name::set(System::String^ value)
@@ -56,7 +57,7 @@ namespace Ragnar
 
     System::String^ AddTorrentParams::SavePath::get()
     {
-        return gcnew System::String(this->_params->save_path.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_params->save_path);
     }
 
     void AddTorrentParams::SavePath::set(System::String^ value)
@@ -66,7 +67,7 @@ namespace Ragnar
 
     System::String^ AddTorrentParams::Url::get()
     {
-        return gcnew System::String(this->_params->url.c_str());
+		return Utils::GetManagedStringFromStandardString(this->_params->url);
     }
 
     void AddTorrentParams::Url::set(System::String^ value)
@@ -82,8 +83,20 @@ namespace Ragnar
     void AddTorrentParams::TorrentInfo::set(Ragnar::TorrentInfo^ value)
     {
         this->_info = value;
-        this->_params->ti = value->get_ptr();
+		this->_params->ti = value->get_ptr();
     }
+
+	SHA1Hash^ AddTorrentParams::InfoHash::get()
+	{
+		return this->infohash;
+	}
+
+	void AddTorrentParams::InfoHash::set(SHA1Hash^ value)
+	{
+		this->infohash = value;
+		if (value != nullptr)
+			this->_params->info_hash = *(value->_hash);
+	}
 
     cli::array<byte>^ AddTorrentParams::ResumeData::get()
     {
@@ -100,6 +113,21 @@ namespace Ragnar
             this->_params->resume_data[i] = value[i];
         }
     }
+	
+	Unsafe::StorageFuncParam^ AddTorrentParams::Storage::get()
+	{
+		return this->storage;
+	}
+
+	void AddTorrentParams::Storage::set(Unsafe::StorageFuncParam^ value)
+	{
+		this->storage = value;
+		//Make one copy
+		if (value == nullptr)
+			this->_params->storage = libtorrent::storage_constructor_type(libtorrent::default_storage_constructor);
+		else
+			this->_params->storage = libtorrent::storage_constructor_type(*value->storage_constructor_func);
+	}
 
     int AddTorrentParams::MaxUploads::get()
     {
@@ -151,7 +179,7 @@ namespace Ragnar
         this->_params->seed_mode = value;
     }
 
-    AddTorrentParams^ Ragnar::AddTorrentParams::FromMagnetUri(System::String^ uri)
+    AddTorrentParams^ AddTorrentParams::FromMagnetUri(System::String^ uri)
     {
         libtorrent::add_torrent_params params;
         libtorrent::error_code ec;
@@ -160,9 +188,23 @@ namespace Ragnar
 
         if (ec)
         {
-            throw gcnew System::Exception(gcnew System::String(ec.message().c_str()));
+			throw gcnew System::Exception(Utils::GetManagedStringFromStandardString(ec.message()));
         }
 
         return gcnew AddTorrentParams(params);
     }
+
+	AddTorrentParams^ AddTorrentParams::FromTorrentInfo(Ragnar::TorrentInfo^ info)
+	{
+		auto ret = gcnew AddTorrentParams();
+		ret->TorrentInfo = info;
+		return ret;
+	}
+
+	AddTorrentParams^ AddTorrentParams::FromInfoHash(SHA1Hash^ hash)
+	{
+		auto ret = gcnew AddTorrentParams();
+		ret->InfoHash = hash;
+		return ret;
+	}
 }

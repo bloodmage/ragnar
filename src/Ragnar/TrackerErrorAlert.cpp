@@ -9,7 +9,7 @@ namespace Ragnar
 	TrackerErrorAlert::TrackerErrorAlert(libtorrent::tracker_error_alert* alert)
 		: TrackerAlert((libtorrent::tracker_alert*) alert)
 	{
-		this->alert = alert;
+		this->alert = new libtorrent::tracker_error_alert(*alert);
 	}
 
 	TrackerErrorAlert::~TrackerErrorAlert()

@@ -10,15 +10,22 @@ namespace libtorrent
 namespace Ragnar
 {
     ref class Fingerprint;
+	namespace Unsafe
+	{
+		ref class Plugin;
+	}
+	ref class DhtDynamicPutter;
+	ref class SHA1Hash;
 
     public ref class Session : ISession
     {
     private:
         bool _disposed;
-        libtorrent::session* _session;
         IAlertFactory^ _alertFactory;
-
-    public:
+		DhtDynamicPutter^ dhtputter;
+	internal:
+		libtorrent::session* _session;
+	public:
         Session();
         Session(Fingerprint^ fingerprint);
 
@@ -35,6 +42,8 @@ namespace Ragnar
         virtual void PostTorrentUpdates();
 
         virtual TorrentHandle^ FindTorrent(System::String^ infoHash);
+
+		virtual TorrentHandle^ FindTorrent(SHA1Hash^ infoHash);
 
         virtual System::Collections::Generic::IEnumerable<TorrentHandle^>^ GetTorrents();
 
@@ -69,18 +78,28 @@ namespace Ragnar
         // TODO: void set_dht_settings (dht_settings const& settings);
 
         // TODO: void add_dht_router (std::pair<std::string, int> const& node);
-        // TODO: void add_dht_node(std::pair<std::string, int> const& node);
+        // void add_dht_node(std::pair<std::string, int> const& node);
+		virtual void AddDhtNode(System::String^ nodeip, int nodeport);
 
-        // TODO: void dht_get_item (sha1_hash const& target);
+        // void dht_get_item (sha1_hash const& target);
+		virtual void DhtGetItem(SHA1Hash^ target);
 
-        // TODO: void dht_get_item (boost::array<char, 32> key, std::string salt = std::string());
+        // void dht_get_item (boost::array<char, 32> key, std::string salt = std::string());
+		///<summary>
+		///key: length 32
+		///</summary>
+		virtual void DhtGetItem(array<byte, 1>^ key, array<byte, 1>^ salt);
 
-        // TODO: sha1_hash dht_put_item (entry data);
+        // sha1_hash dht_put_item (entry data);
+		virtual SHA1Hash^ DhtPutItem(array<byte, 1>^ data, int start, int dlen);
+		virtual SHA1Hash^ DhtPutItem(byte*data, int dlen);
 
-        // TODO: void dht_put_item (boost::array<char, 32> key, boost::function<void(entry&, boost::array<char, 64>&, boost::uint64_t&, std::string const&)> cb, std::string salt = std::string());
+        // void dht_put_item (boost::array<char, 32> key, boost::function<void(entry&, boost::array<char, 64>&, boost::uint64_t&, std::string const&)> cb, std::string salt = std::string());
+		virtual property DhtDynamicPutter^ DhtDynamicItemPutter{ DhtDynamicPutter^ get(); }
 
         // TODO: void add_extension (boost::function<boost::shared_ptr<torrent_plugin>(torrent*, void*)> ext);
-        // TODO: void add_extension(boost::shared_ptr<plugin> ext);
+        // void add_extension(boost::shared_ptr<plugin> ext);
+		virtual void AddTorrentExtension(Unsafe::Plugin^ plugin);
 
         // TODO: void LoadCountryDatabase(System::String^ file);
 
@@ -98,10 +117,10 @@ namespace Ragnar
 
         virtual void SetKey(int key);
 
-        virtual void ListenOn(int lower, int upper);
-        
-		virtual void ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+        virtual int ListenOn(int lower, int upper);
 
+		virtual int ListenOn(int lower, int upper, System::Net::IPAddress^ ip);
+        
         virtual property bool IsListening { bool get(); }
 
         virtual property int ListenPort { int get(); }
@@ -116,8 +135,10 @@ namespace Ragnar
 
         virtual void SetSettings(SessionSettings^ settings);
 
+        // pe_settings get_pe_settings() const;
 		virtual PeSettings^ QueryPeerEncryptionSettings();
 
+		// void set_pe_settings(pe_settings const& settings);
 		virtual void SetPeSettings(PeSettings^ settings);
 
         // TODO: void set_proxy (proxy_settings const& s);

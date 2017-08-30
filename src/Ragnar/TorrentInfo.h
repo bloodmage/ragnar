@@ -1,5 +1,5 @@
 #pragma once
-
+#include <boost/shared_ptr.hpp>
 namespace libtorrent
 {
     class torrent_info;
@@ -8,24 +8,32 @@ namespace libtorrent
 namespace Ragnar
 {
     ref class FileEntry;
+	ref class FileStorage;
+	ref class SHA1Hash;
 
     public ref class TorrentInfo
     {
-    private:
-        libtorrent::torrent_info* _info;
-
     internal:
-        libtorrent::torrent_info* get_ptr() { return this->_info; }
-        TorrentInfo(const libtorrent::torrent_info &info);
+        boost::shared_ptr<libtorrent::torrent_info>* _ptr;
+		libtorrent::torrent_info* _info;
+		boost::shared_ptr<libtorrent::torrent_info> get_ptr() { return *this->_ptr; }
+        //TorrentInfo(const libtorrent::torrent_info &info);
 
     public:
-        TorrentInfo(System::String^ fileName);
+		TorrentInfo(boost::shared_ptr<libtorrent::torrent_info> info);
+		///<summary>
+		///Unsafe conversion
+		///</summary>
+		TorrentInfo(boost::shared_ptr<const libtorrent::torrent_info> info);
+		TorrentInfo(System::String^ fileName);
         TorrentInfo(cli::array<byte>^ buffer);
 
         ~TorrentInfo();
 
         // TODO: file_storage const& files () const;
-        // TODO: file_storage const& orig_files() const;
+		FileStorage^ Files();
+		// TODO: file_storage const& orig_files() const;
+		FileStorage^ OrigFiles();
 
         void RenameFile(int fileIndex, System::String^ fileName);
 
@@ -45,7 +53,7 @@ namespace Ragnar
 
         property int PieceLength { int get(); }
 
-        property System::String^ InfoHash { System::String^ get(); }
+		property SHA1Hash^ InfoHash { SHA1Hash^ get(); }
 
         property int NumFiles { int get(); }
 
@@ -88,6 +96,5 @@ namespace Ragnar
         // TODO:    boost::shared_array<char> metadata () const;
 
         property bool IsMerkleTorrent { bool get(); }
-
     };
 }

@@ -36,6 +36,7 @@ namespace Ragnar.Client.ViewModels
 
         public void Add()
         {
+            _addParams.Storage = Unsafe.StorageConstructorCache.GetFuncParamForStorageConstructor(new Unsafe.StorageConstructor((a, s) => ZipMemoryStorage.GetInstance(a, s, _addParams.TorrentInfo.InfoHash)));
             _eventAggregator.PublishOnBackgroundThread(new AddTorrentMessage(_addParams));
             TryClose(true);
         }

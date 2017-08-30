@@ -3,6 +3,7 @@
 #include <boost/asio/ip/address.hpp>
 #include <boost/date_time/posix_time/posix_time_duration.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
+#include <libtorrent\alloca.hpp>
 #include <libtorrent\bencode.hpp>
 #include <libtorrent\peer_id.hpp>
 #include <libtorrent\time.hpp>
@@ -11,12 +12,17 @@
 
 using namespace System;
 using namespace System::Net;
-
+namespace libtorrent
+{
+	typedef __int64 size_type;
+}
 namespace Ragnar
 {
     public ref class Utils
     {
-    internal:
+	public:
+		static System::Text::Encoding^ windows = System::Text::Encoding::GetEncoding("Windows-1252");
+		static System::Text::Encoding^ local = System::Text::Encoding::Default;
         static cli::array<unsigned char>^ GetByteArrayFromLibtorrentEntry(const libtorrent::entry &entry)
         {
             std::vector<unsigned char> buffer;
@@ -41,27 +47,51 @@ namespace Ragnar
         static libtorrent::sha1_hash GetSha1HashFromString(String^ str)
         {
             libtorrent::sha1_hash hash;
-            const char* ptr = (const char*)(System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(str)).ToPointer();
+			auto stdstr = GetStdStringFromManagedString(str);
+			const char* ptr = stdstr.c_str();
+
             libtorrent::from_hex(ptr, str->Length, (char*)&hash[0]);
 
             return hash;
         }
 
-		static System::Text::Encoding^ windows = System::Text::Encoding::GetEncoding("Windows-1252");
-
-		static String^ GetManagedStringFromStandardString(std::string str)
+		static array<byte, 1>^ ParseHex(String^ str)
 		{
-			System::String^ bad = gcnew System::String(str.c_str());
-			array<byte, 1>^ data = windows->GetBytes(bad);
+			auto out = gcnew array<byte, 1>((str->Length + 1) / 2);
+			pin_ptr<byte> out_ = &out[0];
 
-			System::String^ fixed = System::Text::Encoding::UTF8->GetString(data);
-			
-			delete bad;
-			delete data;
-			
-			return fixed;
+			auto stdstr = GetStdStringFromManagedString(str);
+			const char* ptr = stdstr.c_str();
+
+			libtorrent::from_hex(ptr, str->Length, (char*)out_);
+			return out;
 		}
 
+		static System::String^ ToHex(array<byte, 1>^ bin)
+		{
+			if (bin->Length == 0) return gcnew System::String("");
+
+			char*buf = TORRENT_ALLOCA(char, bin->Length * 2 + 1);
+			pin_ptr<byte> bin_ = &bin[0];
+			std::string sbin((char*)bin_, bin->Length);
+			std::string o(libtorrent::to_hex(sbin));
+
+			return gcnew System::String(o.c_str());
+		}
+
+		static String^ GetManagedStringFromStandardString(const std::string str)
+		{
+			System::String^ bad = gcnew System::String(str.c_str(), 0, str.size());
+			array<byte, 1>^ data = windows->GetBytes(bad);
+
+			System::String^ fixed = local->GetString(data);
+
+			delete bad;
+			delete data;
+
+			return fixed;
+		}
+		
         static std::string GetStdStringFromManagedString(String^ str)
         {
             if (str->Length == 0)
@@ -81,13 +111,14 @@ namespace Ragnar
 
         static System::Net::IPAddress^ GetIPAddress(boost::asio::ip::address const &address)
         {
-            return IPAddress::Parse(gcnew String(address.to_string().c_str()));
+			auto o(address.to_string());
+            return IPAddress::Parse(gcnew String(o.c_str()));
         }
 
         static DateTime GetDateTimeFromTimeT(time_t time)
         {
             DateTime dt = DateTime(1970, 1, 1, 0, 0, 0, 0, System::DateTimeKind::Utc);
-            dt = dt.AddSeconds(time);
+            dt = dt.AddSeconds((double)time);
             dt = dt.ToLocalTime();
 
             return dt;

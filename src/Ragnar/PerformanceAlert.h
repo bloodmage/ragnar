@@ -20,7 +20,7 @@ namespace Ragnar
 	internal:
 		PerformanceAlert(libtorrent::performance_alert* alert);
 
-		public:
-			property PerformanceWarningType^ WarningType { PerformanceWarningType^ get(); }
+	public:
+		property PerformanceWarningType^ WarningType { PerformanceWarningType^ get(); }
 	};
 }

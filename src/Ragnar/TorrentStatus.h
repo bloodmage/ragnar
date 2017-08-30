@@ -68,7 +68,10 @@ namespace Ragnar
             long long get();
         }
 
-		property BitField^ Pieces { BitField^ get(); }
+        //bitfield pieces;
+		property BitField^ Pieces{ BitField^ get(); }
+
+        //bitfield verified_pieces;
 		property BitField^ VerifiedPieces { BitField^ get(); }
 
         property long long TotalDone
@@ -268,11 +271,6 @@ namespace Ragnar
         property System::Nullable<System::TimeSpan> LastScrape
         {
             System::Nullable<System::TimeSpan> get();
-        }
-
-        property int SparseRegions
-        {
-            int get();
         }
 
         property int Priority

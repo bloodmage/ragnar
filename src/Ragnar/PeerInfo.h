@@ -43,7 +43,7 @@ namespace Ragnar
 
     public:
         ~PeerInfo();
-
+		!PeerInfo();
         property PeerFlags Flags { PeerFlags get(); }
 
         // TODO: int source;
@@ -92,10 +92,6 @@ namespace Ragnar
         property int NumHashfails { int get(); }
 
         property System::String^ CountryCode { System::String^ get(); }
-
-        property System::String^ InetAsName { System::String^ get(); }
-
-        property int InetAs { int get(); }
 
         property int DownloadQueueLength { int get(); }
 

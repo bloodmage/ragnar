@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Alert.h"
 #include "ExternalIPAlert.h"
+#include "Utils.h"
 
 #include <libtorrent\alert_types.hpp>
 
@@ -15,7 +16,7 @@ namespace Ragnar
 	System::Net::IPAddress^ ExternalIPAlert::IP::get()
 	{
 		auto add = this->alert->external_address;
-		System::Net::IPAddress^ ip_a = System::Net::IPAddress::Parse(gcnew System::String(add.to_string().c_str()));
+		System::Net::IPAddress^ ip_a = System::Net::IPAddress::Parse(Utils::GetManagedStringFromStandardString(add.to_string()));
 		return ip_a;
 	}
 
