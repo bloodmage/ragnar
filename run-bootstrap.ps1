@@ -87,7 +87,7 @@ Start-Process "$boost_bootstrap" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROO
 # Build Boost
 Write-Host "Building Boost. This *WILL* take a while."
 $boost_b2 = Join-Path $BOOST_ROOT "b2.exe"
-Start-Process "$boost_b2" -ArgumentList "-q -j4 toolset=msvc-14.0 address-model=64 link=shared runtime-link=shared --with-date_time --with-system --with-thread" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
+Start-Process "$boost_b2" -ArgumentList "--build-type=complete --toolset=msvc-12.0 link=shared runtime-link=shared --with-date_time --with-system --with-thread --with-atomic" -Wait -WorkingDirectory $BOOST_ROOT
 #TO GET 64bit build
 #Start-Process "$boost_b2" -ArgumentList "-q -j4 toolset=msvc-14.0 address-model=64 link=shared runtime-link=shared --with-date_time --with-system --with-thread --with-atomic" -NoNewWindow -Wait -WorkingDirectory $BOOST_ROOT
 
