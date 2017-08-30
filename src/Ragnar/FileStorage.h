@@ -33,8 +33,10 @@ namespace Ragnar
 
 	public:
 
-		enum class flags_t
+		enum class flags_t : int
 		{
+			normal = 0,
+
 			// the file is a pad file. It's required to contain zeros
 			// at it will not be saved to disk. Its purpose is to make
 			// the following file start on a piece boundary.
