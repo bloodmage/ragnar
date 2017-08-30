@@ -1,4 +1,4 @@
-# Ragnar (64bit - libtorrent 1.0.7) 
+# Ragnar (32bit #DEFAULT# or 64bit - libtorrent 1.1.4) 
 Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (mostly) complete interface to the underlying C++ library.
 
 
@@ -6,9 +6,14 @@ Ragnar is a C++/CLI wrapper for Rasterbar's *libtorrent*. It aims to provide a (
 The repository includes a `bootstrap.bat` file which runs the `run-bootstrap.ps1` script. This will download and compile both Boost and libtorrent automatically.
 
 ### 1. Run the `bootstrap.bat` file. If it hangs after "Bootstrapping Boost" - then simply run it again.
+### HACK: Modify system &lt;atomic&gt; header
+Open system `atomic` header and simply comment the error line at beginning
 
 ### 2. Building Ragnar
-Open `Ragnar.sln` in Visual Studio 2015. Press `F6`. Wait a while. Success. If not - report an issue.
+Open `Ragnar.sln` in Visual Studio 2013. Press `F6`. Wait a while. Success. If not - report an issue.
+
+## Notice
+If you want to build 64bit version, change `run-bootstrap.ps1`, uncomment 64 bit flags, and comment 32 bit flags. (line 92 and 103)
 
 ## Contributing
 * Fork the repository.
