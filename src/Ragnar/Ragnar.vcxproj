@@ -58,7 +58,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_HEADER_ONLY;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
@@ -71,7 +71,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_DYN_LINK;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;BOOST_ASIO_HEADER_ONLY;BOOST_ALL_DYN_LINK;TORRENT_LINKING_SHARED;WITH_SHIPPED_GEOIP_H</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
       <AssemblerOutput>All</AssemblerOutput>
@@ -183,7 +183,6 @@
     <ClCompile Include="AlertFactory.cpp" />
     <ClCompile Include="AnnounceEntry.cpp" />
     <ClCompile Include="BitField.cpp" />
-    <ClCompile Include="boostinclude.cpp" />
     <ClCompile Include="Collections\Vector.cpp" />
     <ClCompile Include="CreateTorrent.cpp" />
     <ClCompile Include="DhtDynamicItemPutter.cpp" />
