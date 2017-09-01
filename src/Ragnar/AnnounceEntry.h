@@ -34,10 +34,8 @@ namespace Ragnar
         property String^ Message { String^ get(); }
 
         // TODO: error_code last_error;
-
-		property int NextAnnounceIn { int get(); }
-
-		property int MinAnnounceIn { int get(); }
+        // TODO: ptime next_announce;
+        // TODO: ptime min_announce;
 
         property int ScrapeIncomplete { int get(); }
 

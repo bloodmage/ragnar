@@ -26,7 +26,6 @@ namespace Ragnar
 	{
 	internal:
 		libtorrent::file_storage* stor;
-		array<FileEntry^, 1>^ entries;
 
 		~FileStorage();
 		!FileStorage();
@@ -55,6 +54,7 @@ namespace Ragnar
 		};
 
 		FileStorage(libtorrent::file_storage const&store);
+		FileStorage();
 		property int NumFiles { int get(); }
 		property int NumPieces { int get(); void set(int n); }
 		FileEntry^ At(int index);

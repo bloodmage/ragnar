@@ -3,7 +3,7 @@
 
 #include <libtorrent\bitfield.hpp>
 
-namespace Ragnar 
+namespace Ragnar
 {
 	BitField::BitField(libtorrent::bitfield* field)
 	{

@@ -66,10 +66,12 @@ namespace Ragnar
         const char *pbegin = (const char*)(const unsigned char*)ptr;
         const char *pend = pbegin + buffer->Length;
 
-        libtorrent::lazy_entry entry;
-        libtorrent::lazy_bdecode(pbegin, pend, entry);
+		libtorrent::bdecode_node entry;
+		libtorrent::error_code err;
+        libtorrent::bdecode(pbegin, pend, entry, err);
+		if (err.value() != 0) throw gcnew System::InvalidOperationException("invalid buffer");
 
-        this->_session->load_state(entry);
+		this->_session->load_state(entry);
     }
 
     cli::array<byte>^ Session::SaveState()

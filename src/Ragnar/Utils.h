@@ -78,15 +78,19 @@ namespace Ragnar
 
 			return gcnew System::String(o.c_str());
 		}
-
-		static String^ GetManagedStringFromStandardString(const std::string str)
+		static array<byte, 1>^ GetManagedBinaryFromStandardString(const std::string&str)
 		{
-			System::String^ bad = gcnew System::String(str.c_str(), 0, str.size());
-			array<byte, 1>^ data = windows->GetBytes(bad);
+			if (str.size() == 0) return gcnew array<byte, 1>(0);
+			auto ret = gcnew array<byte, 1>(str.size());
+			System::Runtime::InteropServices::Marshal::Copy((System::IntPtr)(void*)str.c_str(), ret, 0, str.size());
+			return ret;
+		}
+		static String^ GetManagedStringFromStandardString(const std::string&str)
+		{
+			array<byte, 1>^ data = GetManagedBinaryFromStandardString(str);
 
 			System::String^ fixed = local->GetString(data);
 
-			delete bad;
 			delete data;
 
 			return fixed;

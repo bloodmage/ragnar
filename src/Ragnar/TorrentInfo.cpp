@@ -4,7 +4,7 @@
 #include "Utils.h"
 #include "FileStorage.h"
 #include "SHA1Hash.h"
-
+#include "Entry.h"
 #include <libtorrent\torrent_info.hpp>
 
 namespace Ragnar
@@ -36,6 +36,11 @@ namespace Ragnar
 		this->_info = this->_ptr->get();
 	}
 
+	TorrentInfo::TorrentInfo(Unsafe::Entry^ entry)
+	{
+		this->_ptr = new boost::shared_ptr<libtorrent::torrent_info>(new libtorrent::torrent_info(*entry->entry));
+		this->_info = this->_ptr->get();
+	}
     TorrentInfo::~TorrentInfo()
     {
 		if (this->_ptr != NULL)

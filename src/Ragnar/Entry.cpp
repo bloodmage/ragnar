@@ -215,13 +215,11 @@ namespace Ragnar
 		}
 		array<byte, 1>^ EntryString::ToBytes()
 		{
-			auto bytes = gcnew array<byte, 1>(str->size());
-			Marshal::Copy((IntPtr)&(*str)[0], bytes, 0, str->size());
-			return bytes;
+			return Utils::GetManagedBinaryFromStandardString(*str);
 		}
 		array<char, 1>^ EntryString::ToChars()
 		{
-			auto bytes = gcnew array<char, 1>(str->size());
+			auto bytes = gcnew array<char>(str->size());
 			if (str->size() == 0) return bytes;
 			pin_ptr<char> bytes_ = &bytes[0];
 			for (int i = 0; i < str->size(); i++)

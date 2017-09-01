@@ -14,16 +14,19 @@ namespace Ragnar
 	FileStorage::FileStorage(libtorrent::file_storage const&store)
 	{
 		stor = new libtorrent::file_storage(store);
-		entries = gcnew array<FileEntry^, 1>(store.num_files());
 	}
 	
+	FileStorage::FileStorage()
+	{
+		stor = new libtorrent::file_storage();
+	}
+
 	FileStorage::~FileStorage()
 	{
 		if (stor != NULL)
 		{
 			delete stor;
 			stor = NULL;
-			entries = nullptr;
 		}
 	}
 

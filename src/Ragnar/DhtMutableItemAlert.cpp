@@ -42,9 +42,7 @@ namespace Ragnar
 	}
 	array<unsigned char, 1>^ DhtMutableItemAlert::Salt::get()
 	{
-		auto ret = gcnew array<unsigned char, 1>(alert->salt.size());
-		Marshal::Copy((IntPtr)&alert->salt[0], ret, 0, alert->salt.size());
-		return ret;
+		return Utils::GetManagedBinaryFromStandardString(alert->salt);
 	}
 	array<unsigned char, 1>^ DhtMutableItemAlert::Entry::get()
 	{

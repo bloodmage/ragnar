@@ -3,7 +3,7 @@
 #include "Utils.h"
 
 #include <libtorrent\torrent_info.hpp>
-
+#include <libtorrent\announce_entry.hpp>
 namespace Ragnar
 {
     using namespace System;
@@ -49,16 +49,6 @@ namespace Ragnar
     {
         return gcnew String(this->_entry->message.c_str());
     }
-
-	int AnnounceEntry::NextAnnounceIn::get()
-	{
-		return this->_entry->next_announce_in();
-	}
-
-	int AnnounceEntry::MinAnnounceIn::get()
-	{
-		return this->_entry->min_announce_in();
-	}
 
     int AnnounceEntry::ScrapeIncomplete::get()
     {

@@ -2,12 +2,30 @@
 #include "FileStorage.h"
 #include "Utils.h"
 #include "Entry.h"
+#include "SHA1Hash.h"
 
 #include <libtorrent/create_torrent.hpp>
 
 namespace Ragnar
 {
-
+	///<summary>
+	///Reference following C++ sample procedure<br/>
+	///<br/>
+	///file_storage fs;<br/>
+	///<br/>
+	/// // recursively adds files in directories<br/>
+	///add_files(fs, "./my_torrent");<br/>
+	///<br/>
+	///create_torrent t(fs);<br/>
+	///t.add_tracker("http://my.tracker.com/announce");<br/>
+	///t.set_creator("libtorrent example");<br/>
+	///<br/>
+	///// reads the files and calculates the hashes<br/>
+	///set_piece_hashes(t, ".");<br/>
+	///<br/>
+	///	ofstream out("my_torrent.torrent", std::ios_base::binary);<br/>
+	///bencode(std::ostream_iterator&lt;char&gt;(out), t.generate());<br/>
+	///</summary>
 	public ref class CreateTorrent
 	{
 	internal:
@@ -33,16 +51,35 @@ namespace Ragnar
 				this->ptr->set_comment(o.c_str());
 			}
 		}
-		void SetPieceHashes(System::String^ s) {
-			auto hg = System::Runtime::InteropServices::Marshal::StringToHGlobalUni(s);
-			System::Runtime::InteropServices::Marshal::FreeHGlobal(hg);
-			std::wstring p((wchar_t*)hg.ToPointer());
-			libtorrent::set_piece_hashes(*ptr, p);
+		void SetPieceHashes(System::String^ path) {
+			auto hg = Utils::GetStdStringFromManagedString(path);
+			libtorrent::set_piece_hashes(*ptr, hg);
 		}
 
 		Unsafe::Entry^ Generate() {
 			Unsafe::Entry^ ent = Unsafe::Entry::Wrap(ptr->generate());
 			return ent;
 		}
+		void AddUrlSeed(System::String^ url) {
+			auto o = Utils::GetStdStringFromManagedString(url);
+			ptr->add_url_seed(o);
+		}
+		void AddHTTPSeed(System::String^ url) {
+			auto o = Utils::GetStdStringFromManagedString(url);
+			ptr->add_http_seed(o);
+		}
+		void AddNode(System::String^ nodeip, int nodeport)
+		{
+			auto o = Utils::GetStdStringFromManagedString(nodeip);
+			ptr->add_node(std::make_pair(o, nodeport));
+		}
+
+		property bool IsPriv{bool get() { return ptr->priv(); } void set(bool v){ ptr->set_priv(v); } }
+		void AddSimilarTorrent(SHA1Hash^ ih) { ptr->add_similar_torrent(*ih->_hash); }
+		void AddCollection(System::String^ c) {
+			auto o = Utils::GetStdStringFromManagedString(c);
+			ptr->add_collection(o);
+		}
+
 	};
 }

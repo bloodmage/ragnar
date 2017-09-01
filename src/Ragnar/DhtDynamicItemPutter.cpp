@@ -34,17 +34,14 @@ namespace Ragnar
 			array<byte, 1>^ key_ = gcnew array<byte, 1>(32);
 			Marshal::Copy((System::IntPtr)key.begin(), key_, 0, 32);
 
-			array<byte, 1>^ salt_ = gcnew array<byte, 1>(salt.size());
-			if (salt.size() > 0)
-				Marshal::Copy((System::IntPtr)(void*)&salt.begin()[0], salt_, 0, salt.size());
+			array<byte, 1>^ salt_ = Utils::GetManagedBinaryFromStandardString(salt);
 
 			PutterDelegate^ delegate_ = delegateLookup(key_, salt_);
 			if (delegate_ == nullptr) return;
 			
 			std::string flatentry;
 			libtorrent::bencode(std::back_inserter(flatentry), entry);
-			array<byte, 1>^ entry_ = gcnew array<byte, 1>(flatentry.size());
-			Marshal::Copy((System::IntPtr)&flatentry.begin()[0], entry_, 0, flatentry.size());
+			array<byte, 1>^ entry_ = Utils::GetManagedBinaryFromStandardString(flatentry);
 
 			array<byte, 1>^ sign_ = gcnew array<byte, 1>(64);
 			Marshal::Copy((System::IntPtr)sign.begin(), sign_, 0, 64);

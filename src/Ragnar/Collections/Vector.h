@@ -73,7 +73,7 @@ namespace Ragnar
 
             virtual void CopyTo(cli::array<U>^ arr, int startIndex)
             {
-                for (int i = 0; i < this->_vector->size(); i++)
+                for (unsigned int i = 0; i < this->_vector->size(); i++)
                 {
                     arr[startIndex + i] = this->_converter->From(this->_vector->at(i));
                 }

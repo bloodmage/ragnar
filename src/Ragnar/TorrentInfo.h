@@ -10,7 +10,10 @@ namespace Ragnar
     ref class FileEntry;
 	ref class FileStorage;
 	ref class SHA1Hash;
-
+	namespace Unsafe
+	{
+		ref class Entry;
+	}
     public ref class TorrentInfo
     {
     internal:
@@ -26,7 +29,8 @@ namespace Ragnar
 		///</summary>
 		TorrentInfo(boost::shared_ptr<const libtorrent::torrent_info> info);
 		TorrentInfo(System::String^ fileName);
-        TorrentInfo(cli::array<byte>^ buffer);
+		TorrentInfo(cli::array<byte>^ buffer);
+		TorrentInfo(Unsafe::Entry^ entry);
 
         ~TorrentInfo();
 
