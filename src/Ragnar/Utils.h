@@ -22,7 +22,7 @@ namespace Ragnar
     {
 	public:
 		static System::Text::Encoding^ windows = System::Text::Encoding::GetEncoding("Windows-1252");
-		static System::Text::Encoding^ local = System::Text::Encoding::Default;
+		static System::Text::Encoding^ local = System::Text::Encoding::UTF8;
         static cli::array<unsigned char>^ GetByteArrayFromLibtorrentEntry(const libtorrent::entry &entry)
         {
             std::vector<unsigned char> buffer;

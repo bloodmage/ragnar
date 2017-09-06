@@ -113,13 +113,15 @@ namespace Ragnar
 		host = nullptr;
 		if (delegates != nullptr)
 			delegates->Clear();
-		helper->handle = nullptr;
+		if (helper!=NULL)
+			delete helper->handle;
 		delegates = nullptr;
 	}
 	
 	DhtDynamicPutter::!DhtDynamicPutter()
 	{
 		delete helper;
+		helper = NULL;
 	}
 
 	void DhtDynamicPutter::RegisterPutCallback(array<byte, 1>^ key, PutterDelegate^ callback, array<byte, 1>^ salt)
@@ -163,7 +165,7 @@ namespace Ragnar
 	{
 		if (sig->Length != 64) throw gcnew InvalidOperationException("sig must be a 64 byte buffer");
 		if (v == nullptr) throw gcnew NullReferenceException("value must not be null");
-		if (salt == nullptr) throw gcnew NullReferenceException("salt must not be null");
+		if (salt == nullptr) salt = gcnew array<byte>(0);
 		if (pk->Length != 32) throw gcnew InvalidOperationException("pk must be of length 32");
 		if (sk->Length != 64) throw gcnew InvalidOperationException("sk must be of length 64");
 		pin_ptr<byte> v_ = &v[0];
@@ -180,5 +182,26 @@ namespace Ragnar
 		pin_ptr<byte> sig_ = &sig[0];
 
 		libtorrent::dht::sign_mutable_item(std::make_pair((char*)v_, v->Length), std::make_pair((char*)saltref, salt->Length), seq_, (char*)pk_, (char*)sk_, (char*)sig_);
+	}
+
+	bool DhtDynamicPutter::VerifyMutableItem(array<byte, 1>^ sig, array<byte, 1>^ v, array<byte, 1>^ salt, System::UInt64 seq, array<byte, 1>^ pk)
+	{
+		if (sig->Length != 64) throw gcnew InvalidOperationException("sig must be a 64 byte buffer");
+		if (v == nullptr) throw gcnew NullReferenceException("value must not be null");
+		if (salt == nullptr) salt = gcnew array<byte>(0);
+		if (pk->Length != 32) throw gcnew InvalidOperationException("pk must be of length 32");
+		pin_ptr<byte> v_ = &v[0];
+		byte* saltref = NULL;
+		pin_ptr<byte> salt_;
+		if (salt->Length != 0)
+		{
+			salt_ = &salt[0];
+			saltref = salt_;
+		}
+		__int64 seq_ = seq;
+		pin_ptr<byte> pk_ = &pk[0];
+		pin_ptr<byte> sig_ = &sig[0];
+
+		return libtorrent::dht::verify_mutable_item(std::make_pair((char*)v_, v->Length), std::make_pair((char*)saltref, salt->Length), seq_, (char*)pk_, (char*)sig_);
 	}
 }

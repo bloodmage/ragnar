@@ -31,5 +31,11 @@ namespace Ragnar
 		///Sign mutable item, v: value, salt: salt, seq: currentseq, pk: pubkey of length 32, sk: privkey of length 64, sig: output buffer of size 64
 		///</summary>
 		static void SignMutableItem(array<byte, 1>^ sig, array<byte, 1>^ v, array<byte, 1>^ salt, System::UInt64 seq, array<byte, 1>^ pk, array<byte, 1>^ sk);
+		///<summary>
+		///Verify mutable item, v: value, salt: salt, seq: currentseq, pk: pubkey of length 32, sig: output buffer of size 64
+		///Returns whether passed verification
+		///</summary>
+
+		static bool VerifyMutableItem(array<byte, 1>^ sig, array<byte, 1>^ v, array<byte, 1>^ salt, System::UInt64 seq, array<byte, 1>^ pk);
 	};
 }

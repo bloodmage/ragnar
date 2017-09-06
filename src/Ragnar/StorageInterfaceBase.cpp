@@ -82,7 +82,7 @@ namespace Ragnar
 			{
 				delete plugin;
 				plugin = NULL;
-				filestorage = nullptr;
+				delete filestorage;
 			}
 		}
 		StorageInterfaceBase::!StorageInterfaceBase()
@@ -94,7 +94,7 @@ namespace Ragnar
 		{
 			plugin = NULL;
 			OnDestroy();
-			filestorage = nullptr;
+			delete filestorage;
 		}
 
 
